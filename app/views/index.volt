@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/materialize.min.css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Phalcon PHP Framework</title>
+        <title>Kangoo</title>
     </head>
     <body>
         {{ content() }}
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="js/materialize.min.js"></script>
     </body>
 </html>
