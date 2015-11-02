@@ -17,6 +17,5 @@ class SessionController extends ControllerBase
     public function signupAction()
     {
       $myForm = new SignUpForm();
-      $myForm->clear();
     }
 }
