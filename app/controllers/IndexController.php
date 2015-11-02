@@ -7,7 +7,6 @@ class IndexController extends ControllerBase
       $this->tag->setTitle("Welcome to Kangoo");
       //parent::initialize();
     }
-
     public function indexAction()
     {
 
