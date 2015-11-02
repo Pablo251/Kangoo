@@ -1,9 +1,8 @@
 <?php
 use Phalcon\Mvc\Controller;
-
 class SessionController extends ControllerBase
 {
-    /*Initialize This Controller*/ 
+    /*Initialize This Controller*/
     public function initialize(){
       $this->tag->setTitle("Sign up");
       parent::initialize();
@@ -17,6 +16,7 @@ class SessionController extends ControllerBase
     */
     public function signupAction()
     {
-      echo "<h2>Hola soy un form</h2>";
+      $myForm = new SignUpForm();
+      $myForm->clear();
     }
 }
