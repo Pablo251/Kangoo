@@ -17,5 +17,9 @@ class SessionController extends ControllerBase
     public function signupAction()
     {
       $myForm = new SignUpForm();
+      if ($this->request->isPost()) {
+        echo "Esto es un post";
+      }
+      $this->view->form = $myForm;
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 class IndexController extends ControllerBase
 {
     /*Initialize the controller class*/
