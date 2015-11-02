@@ -25,8 +25,7 @@
 	   <?php echo $form->render('terms'); ?> <?php echo $form->label('terms'); ?><br>
     <?php echo $form->messages('terms'); ?></br>
     <?php echo $form->render('Sign Up'); ?>
-    <?php echo $form->render('csrf', array('value' => $this->security->getToken())); ?>
-    <?php echo $form->messages('csrf'); ?>
+    
   </form>
 </div>
 </section>

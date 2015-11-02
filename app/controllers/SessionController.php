@@ -18,28 +18,10 @@ class SessionController extends ControllerBase
   {
     $myForm = new SignUpForm();
     if ($this->request->isPost()) {
-
-      if ($form->isValid($this->request->getPost()) != false) {
-
-        $user = new Users();
-
-        $user->assign(array(
-          'name' => $this->request->getPost('name', 'striptags'),
-          'email' => $this->request->getPost('email'),
-          'password' => $this->security->hash($this->request->getPost('password')),
-          'profilesId' => 2
-        ));
-
-        if ($user->save()) {
-          return $this->dispatcher->forward(array(
-            'controller' => 'index',
-            'action' => 'index'
-          ));
-        }
-
-        $this->flash->error($user->getMessages());
+      if ($myForm->isValid($this->request->getPost()) != false) { //->isValid($this->request->getPost()) != false
+        echo "<h1>Under develop... Confirmation coming soon</h1>";
       }
-    }
+     }
     $this->view->form = $myForm;
   }
 }
