@@ -96,12 +96,12 @@ class SignUpForm extends Form
     $this->add($terms);
 
     // CSRF ??
-    $csrf = new Hidden('csrf');
-    $csrf->addValidator(new Identical(array(
-      'value' => $this->security->getSessionToken(),
-      'message' => 'CSRF validation failed'
-    )));
-    $this->add($csrf);
+    // $csrf = new Hidden('csrf');
+    // $csrf->addValidator(new Identical(array(
+    //   'value' => $this->security->getSessionToken(),
+    //   'message' => 'CSRF validation failed'
+    // )));
+    // $this->add($csrf);
 
     // Sign Up
     $this->add(new Submit('Sign Up', array(

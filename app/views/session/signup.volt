@@ -25,8 +25,8 @@
 	   {{ form.render('terms') }} {{ form.label('terms') }}<br>
     {{ form.messages('terms') }}</br>
     {{ form.render('Sign Up') }}
-    {{ form.render('csrf', ['value': security.getToken()]) }}
-    {{ form.messages('csrf') }}
+    {#{{ form.render('csrf', ['value': security.getToken()]) }}
+    {{ form.messages('csrf') }}#}
   </form>
 </div>
 </section>
