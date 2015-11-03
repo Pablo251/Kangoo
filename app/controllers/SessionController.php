@@ -19,9 +19,12 @@ class SessionController extends ControllerBase
     $myForm = new SignUpForm();
     if ($this->request->isPost()) {
       if ($myForm->isValid($this->request->getPost()) != false) { //->isValid($this->request->getPost()) != false
+        //trying to send an email
+
         echo "<h1>Under develop... Confirmation coming soon</h1>";
+        var_dump($this->request->getPost());
       }
-     }
+    }
     $this->view->form = $myForm;
   }
 }
