@@ -11,5 +11,9 @@ class IndexController extends ControllerBase
     {
 
     }
+    public function monyAction()
+    {
+      var_dump(APP_PATH);
+    }
 
 }
