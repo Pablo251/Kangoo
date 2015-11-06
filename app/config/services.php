@@ -83,3 +83,18 @@ $di->setShared('session', function () {
 
     return $session;
 });
+/**
+ * Loading routes from the routes.php file
+ */
+$di->set('router', function() {
+	return require __DIR__ . '/routers.php';
+});
+/**
+ * Start the sendmail
+ */
+/**
+* Mail service uses AmazonSES
+*/
+$di->set('mail', function(){
+        return new Mail();
+});

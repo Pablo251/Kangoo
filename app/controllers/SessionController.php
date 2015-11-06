@@ -10,6 +10,7 @@ class SessionController extends ControllerBase
 
   public function indexAction()
   {
+    echo "<h1>Hello!</h1>";
   }
   /**
   * execute the signup ation, face to an existent user.

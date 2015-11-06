@@ -15,6 +15,10 @@ try {
      * Read auto-loader
      */
     include APP_PATH . "/app/config/loader.php";
+    /**
+     * Read routers
+     */
+    include APP_PATH . "/app/config/routers.php";
 
     /**
      * Read services
@@ -24,6 +28,12 @@ try {
     /**
      * Handle the request
      */
+
+    /**
+    * Asign config to DI... That allow call some values later.
+    */
+    $di->set('config', $config);
+
     $application = new \Phalcon\Mvc\Application($di);
 
     echo $application->handle()->getContent();
