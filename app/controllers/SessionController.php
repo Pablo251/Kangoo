@@ -17,15 +17,24 @@ class SessionController extends ControllerBase
   */
   public function signupAction()
   {
-    $myForm = new SignUpForm();
+    $form = new SignUpForm();
     if ($this->request->isPost()) {
-      if ($myForm->isValid($this->request->getPost()) != false) { //->isValid($this->request->getPost()) != false
-        //trying to send an email
-
-        echo "<h1>Under develop... Confirmation coming soon</h1>";
-        var_dump($this->request->getPost());
-      }
+        if ($form->isValid($this->request->getPost()) != false) {
+          $user = new User();
+          $user->assign(array(
+              'username' => $this->request->getPost('name', 'striptags'),
+              'password' => $this->security->hash($this->request->getPost('password')),
+              'email' => $this->request->getPost('email'),
+              'active' => 0
+          ));
+          if ($user->save()) {
+            echo "Se guarda";
+          }else{
+            echo "No funcó";
+          }
+          die;
+        }
     }
-    $this->view->form = $myForm;
+    $this->view->form = $form;
   }
 }

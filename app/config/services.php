@@ -66,7 +66,12 @@ $di->setShared('db', function () use ($config) {
 
     return new $class($dbConfig);
 });
-
+/**
+ * Loading routes from the routes.php file
+ */
+$di->set('router', function() {
+	return require __DIR__ . '/routers.php';
+});
 /**
  * If the configuration specify the use of metadata adapter use it or use memory otherwise
  */
@@ -86,9 +91,9 @@ $di->setShared('session', function () {
 /**
  * Loading routes from the routes.php file
  */
-$di->set('router', function() {
-	return require __DIR__ . '/routers.php';
-});
+// $di->set('router', function() {
+// 	return require __DIR__ . '/routers.php';
+// });
 /**
  * Start the sendmail
  */

@@ -1,8 +1,6 @@
 <?php
 
 use Phalcon\Mvc\Model\Validator\Email as Email;
-use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Validator\Uniqueness;
 
 class User extends \Phalcon\Mvc\Model
 {
@@ -36,7 +34,6 @@ class User extends \Phalcon\Mvc\Model
      * @var integer
      */
     public $active;
-
     /**
      * Before create the user assign a password
      */
@@ -44,6 +41,7 @@ class User extends \Phalcon\Mvc\Model
     {
         //The account must be confirmed via e-mail
         $this->active = 0;
+
     }
 
     /**
@@ -65,25 +63,24 @@ class User extends \Phalcon\Mvc\Model
     }
     /**
      * Validations and business logic
-     * Validate that emails are unique across users
+     *
      * @return boolean
      */
     public function validation()
     {
-        $this->validate(new Email(
+        $this->validate(
+            new Email(
                 array(
                     'field'    => 'email',
                     'required' => true,
                 )
-            ),
-            new Uniqueness(
-                array(
-                    "field"   => "email",
-                    "message" => "The email is already registered"
-                ));
+            )
+        );
+
         if ($this->validationHasFailed() == true) {
             return false;
         }
+
         return true;
     }
 

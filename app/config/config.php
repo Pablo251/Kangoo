@@ -6,8 +6,8 @@ return new \Phalcon\Config(array(
   'database' => array(
     'adapter'     => 'Mysql',
     'host'        => 'localhost',
-    'username'    => 'root',
-    'password'    => '',
+    'username'    => 'marsupial',
+    'password'    => 'sugarglider',
     'dbname'      => 'dbkangoo',
     'charset'     => 'utf8',
   ),
@@ -24,14 +24,14 @@ return new \Phalcon\Config(array(
     'publicUrl'      => '127.0.0.1/kangoo',
   ),
   'mail' => array(
-    'fromName' => 'Phalcon Term',
-    'fromEmail' => 'fcopensuse@gmail.com',
+    'fromName' => 'Kangoo Team',
+    'fromEmail' => '',
     'smtp' => array(
       'server'	=> 'smtp.gmail.com',
       'port' 		=> 465,
       'security' => 'ssl',
-      'username' => 'fcopensuse@gmail.com',
+      'username' => '',
       'password' => '',
     )
   )
-));cd
+));
