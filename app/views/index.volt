@@ -11,11 +11,6 @@
         {{ get_title()}}
     </head>
     <body>
-        {{ content() }}
-        {{ javascript_include('js/jquery-2.1.4.min.js')}}
-        {{ javascript_include('js/materialize.min.js') }}
-        <!-- Dropdown Structure -->
-    </body>
   <ul id="dropdown1" class="dropdown-content">
   <li ><a href="#!">Enviados</a></li>
   <li><a href="#!">Salida</a></li>
@@ -28,7 +23,7 @@
     </ul>
   </div>
 </nav>
- 
+        {{ content() }}
         <footer class="page-footer blue accent-5">
           <div class="container">
             <div class="row">
@@ -47,5 +42,8 @@
             </div>
           </div>
         </footer>
-                  
+    </body>
+        {{ javascript_include('js/jquery-2.1.4.min.js')}}
+        {{ javascript_include('js/materialize.min.js') }}
+        <!-- Dropdown Structure -->
 </html>
