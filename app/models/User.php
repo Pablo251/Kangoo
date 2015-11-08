@@ -1,8 +1,7 @@
 <?php
 
 use Phalcon\Mvc\Model\Validator\Email as Email;
-use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Validator\Uniqueness;
+
 class User extends \Phalcon\Mvc\Model
 {
 
@@ -35,7 +34,33 @@ class User extends \Phalcon\Mvc\Model
      * @var integer
      */
     public $active;
+    /**
+     * Before create the user assign a password
+     */
+    public function beforeValidationOnCreate()
+    {
+        //The account must be confirmed via e-mail
+        $this->active = 0;
 
+    }
+
+    /**
+     * Send a confirmation e-mail to the user if the account is not active
+     */
+    public function afterSave()
+    {
+        if ($this->active == 0) {
+            $emailConfirmation = new EmailConfirmations();
+            $emailConfirmation->usersId = $this->id_user;
+
+            if ($emailConfirmation->save()) {
+                $this->getDI()->getFlash()->notice(
+                    '<h4> A confirmation mail has been sent to </h4> ' . $this->email
+                );
+            }
+
+        }
+    }
     /**
      * Validations and business logic
      *
@@ -65,6 +90,7 @@ class User extends \Phalcon\Mvc\Model
     public function initialize()
     {
         $this->hasMany('id_user', 'Adressee', 'id_user', array('alias' => 'Adressee'));
+        $this->hasMany('id_user', 'EmailConfirmations', 'usersId', array('alias' => 'EmailConfirmations'));
         $this->hasMany('id_user', 'Mail', 'fk_user', array('alias' => 'Mail'));
     }
 
