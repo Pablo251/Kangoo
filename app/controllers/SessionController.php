@@ -12,6 +12,11 @@ class SessionController extends ControllerBase
   {
     echo "<h1>Hello!</h1>";
   }
+
+  public function loginAction()
+  {
+    echo "<h1>Commig soon :D!</h1>";
+  }
   /**
   * execute the signup ation, face to an existent user.
   */
@@ -28,11 +33,14 @@ class SessionController extends ControllerBase
               'active' => 0
           ));
           if ($user->save()) {
-            echo "Se guarda";
+            return $this->dispatcher->forward(array(
+                'controller' => 'index',
+                'action' => 'index'
+            ));
           }else{
-            echo "No funcó";
+            echo "<h5>Upps! Data couldn't be saved :(... Try again...</h5>";
           }
-          die;
+          $this->flash->error($user->getMessages());
         }
     }
     $this->view->form = $form;
