@@ -6,3 +6,5 @@ DEVnote.txt
 app/cache/c__xampp_htdocs_kangoo_app_views_session_signup.volt.php
 app/cache/c__xampp_htdocs_kangoo_app_views_session_signup.volt.php
 app/cache/c__xampp_htdocs_kangoo_app_views_session_signup.volt.php
+app/cache/c__xampp_htdocs_kangoo_app_views_session_login.volt.php
+app/cache/c__xampp_htdocs_kangoo_app_views_emailtemplates_confirmation.volt.php
