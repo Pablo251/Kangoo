@@ -22,7 +22,7 @@
     {{ form.render('confirmPassword') }}</br>
     {{ form.messages('confirmPassword') }}</br>
     <!--password again-->
-	   {{ form.render('terms') }} {{ form.label('terms') }}<br>
+    {{ form.render('terms') }} {{ form.label('terms') }}<br>
     {{ form.messages('terms') }}</br>
     {{ form.render('Sign Up') }}
     {#{{ form.render('csrf', ['value': security.getToken()]) }}

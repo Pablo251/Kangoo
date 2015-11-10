@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2015 a las 08:31:20
+-- Tiempo de generación: 03-11-2015 a las 19:29:09
 -- Versión del servidor: 5.6.25
 -- Versión de PHP: 5.6.11
 
@@ -30,6 +30,21 @@ CREATE TABLE IF NOT EXISTS `adressee` (
   `id_user` bigint(20) unsigned NOT NULL,
   `id_mail` bigint(20) unsigned NOT NULL,
   `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `email_confirmations`
+--
+
+CREATE TABLE IF NOT EXISTS `email_confirmations` (
+  `id` bigint(20) unsigned NOT NULL,
+  `usersId` bigint(20) unsigned DEFAULT NULL,
+  `code` char(32) NOT NULL,
+  `createdAt` int(10) unsigned NOT NULL,
+  `modifiedAt` int(10) unsigned DEFAULT NULL,
+  `confirmed` char(1) DEFAULT 'N'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -74,6 +89,14 @@ ALTER TABLE `adressee`
   ADD KEY `id_mail` (`id_mail`);
 
 --
+-- Indices de la tabla `email_confirmations`
+--
+ALTER TABLE `email_confirmations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `usersId` (`usersId`);
+
+--
 -- Indices de la tabla `mail`
 --
 ALTER TABLE `mail`
@@ -92,6 +115,11 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
+--
+-- AUTO_INCREMENT de la tabla `email_confirmations`
+--
+ALTER TABLE `email_confirmations`
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `mail`
 --
@@ -112,6 +140,12 @@ ALTER TABLE `user`
 ALTER TABLE `adressee`
   ADD CONSTRAINT `adressee_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
   ADD CONSTRAINT `adressee_ibfk_2` FOREIGN KEY (`id_mail`) REFERENCES `mail` (`id_mail`);
+
+--
+-- Filtros para la tabla `email_confirmations`
+--
+ALTER TABLE `email_confirmations`
+  ADD CONSTRAINT `email_confirmations_ibfk_1` FOREIGN KEY (`usersId`) REFERENCES `user` (`id_user`);
 
 --
 -- Filtros para la tabla `mail`

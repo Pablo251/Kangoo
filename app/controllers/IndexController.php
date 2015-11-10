@@ -1,4 +1,5 @@
 <?php
+use Phalcon\Mvc\Controller;
 class IndexController extends ControllerBase
 {
     /*Initialize the controller class*/
@@ -10,6 +11,10 @@ class IndexController extends ControllerBase
     public function indexAction()
     {
 
+    }
+    public function monyAction()
+    {
+       print_r(APP_PATH);
     }
 
 }

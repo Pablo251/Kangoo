@@ -22,7 +22,7 @@
     <?php echo $form->render('confirmPassword'); ?></br>
     <?php echo $form->messages('confirmPassword'); ?></br>
     <!--password again-->
-	   <?php echo $form->render('terms'); ?> <?php echo $form->label('terms'); ?><br>
+    <?php echo $form->render('terms'); ?> <?php echo $form->label('terms'); ?><br>
     <?php echo $form->messages('terms'); ?></br>
     <?php echo $form->render('Sign Up'); ?>
     

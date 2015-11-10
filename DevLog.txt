@@ -1,0 +1,71 @@
+﻿03\11\2015 1:00pm - Mail integration
+	-Nueva tabla en la base de datos
+	-Config.php a�adido el array mail
+	-Cree el model de mail_confirmation
+	-EmailConfirmation "Model" en el initialize el alias est�
+	en may�scula, mientras que en el ejemplo en min�scula. Si
+	existen problemas TENERLO EN CUENTA
+	-ControllerBase send tiene un parent... TOMARLO EN CUENTA
+	-Omint� el validator unique del correo en User.php TENER
+	EN CUENTA
+	-Mail library a�adido... continere un include donde se usa
+	el _DIR_ TOMAR EN CUENTA
+	-Mail, TOMAR EN CUENTA el getTemplate()
+	-Services.php di mail a�adido
+	-routers.php a�adido en config
+	-libraryDir a�adido al loader de kangoo
+	-Services.php some code added TOMAR EN CUENTA
+		/**
+ * Loading routes from the routes.php file
+ */
+$di->set('router', function() {
+	return require __DIR__ . '/routers.php';
+});
+		/**
+* Mail service uses AmazonSES
+*/
+$di->set('mail', function(){
+        return new Mail();
+});
+	-Template/confirmation a�adido
+	-Inclu� en el bootstrap la referencia a "routes.php"
+	-Omit� el uso de _DIR_ en el bootstrap, TENER EN CUENTA
+	- Logica del controlador
+
+05\11\2015 8:51am - Mail integration
+	-User model include
+	-EmailConfirmations model include
+	-User model use added...
+		use Phalcon\Mvc\Model;
+		use Phalcon\Mvc\Model\Validator\Uniqueness;
+	-Config.php añadido el array mail (No tiene coma al final)
+	-Configuración de los modelos (Métodos copy paste)
+		*User::mail, validado único
+	-El  controller base contiene un parent disabled TOMAR EN CUENTA 
+	-Añadí el Library y el Mail.php (getTemplate -> getContent)
+	(_dir_)
+	-Añadido el di=set(mail) y el di=(router) en services.php
+	-Services.php di mail a�adido
+	-routers.php a�adido en config
+	-Template/confirmation a�adido
+	-Inclu� en el bootstrap la referencia a "routes.php"
+	-Omit� el uso de _DIR_ en el bootstrap, TENER EN CUENTA
+	-copiado el folder ventor
+	
+
+
+
+Muy completo!
+Soporte de orm!
+Bestaial en documentaci�n!
+La comunidad es actica y creciente
+Blade
+Cach�!
+Jmeter - benchmark
+
+"Yo todo lo que he querido hacer, lo he podido hacer"
+Nos mata:
+la velocidad
+manejo del frontend
+
+
