@@ -1,5 +1,6 @@
 <?php
 use Phalcon\Mvc\Controller;
+//use Vokuro\Forms\LoginForm;
 class SessionController extends ControllerBase
 {
   /*Initialize This Controller*/
@@ -10,12 +11,17 @@ class SessionController extends ControllerBase
 
   public function indexAction()
   {
-    echo "<h1>Hello!</h1>";
   }
 
   public function loginAction()
   {
-    echo "<h1>Commig soon :D!</h1>";
+    $form = new LoginForm();
+    if ($this->request->isPost()) {
+      if ($form->isValid($this->request->getPost()) != false) {
+        echo "<h1>So near! Our App is under development... ;) </h1>";
+      }
+    }
+    $this->view->form = $form;
   }
   /**
   * execute the signup ation, face to an existent user.
@@ -25,22 +31,7 @@ class SessionController extends ControllerBase
     $form = new SignUpForm();
     if ($this->request->isPost()) {
         if ($form->isValid($this->request->getPost()) != false) {
-          $user = new User();
-          $user->assign(array(
-              'username' => $this->request->getPost('name', 'striptags'),
-              'password' => $this->security->hash($this->request->getPost('password')),
-              'email' => $this->request->getPost('email'),
-              'active' => 0
-          ));
-          if ($user->save()) {
-            return $this->dispatcher->forward(array(
-                'controller' => 'index',
-                'action' => 'index'
-            ));
-          }else{
-            echo "<h5>Upps! Data couldn't be saved :(... Try again...</h5>";
-          }
-          $this->flash->error($user->getMessages());
+          echo "<h1>A tad of time! Accounts creation, confirmation and activation is so near... :D </h1>";
         }
     }
     $this->view->form = $form;
