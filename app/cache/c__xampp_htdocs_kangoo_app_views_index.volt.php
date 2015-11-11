@@ -12,11 +12,11 @@
     </head>
     <body>
   <ul id="dropdown1" class="dropdown-content">
-  <li ><a href="#!">Enviados</a></li>
+  <li ><a href="http://localhost:81/kangoo/session/signup">Enviados</a></li>
   <li><a href="#!">Salida</a></li>
 </ul>
 <nav>
-  <div class="nav-wrapper blue darken-3">
+  <div class="nav-wrapper blue lighten-1">
     <ul class="left hide-on-down-and-down">
       <!-- Dropdown Trigger -->
       <li><a class="dropdown-button waves-effect" data-belowOrigin= "true" href="#!" data-activates="dropdown1"><i class="mdi-navigation-menu"></i></a></li>
