@@ -11,6 +11,9 @@ use Phalcon\Mvc\Url as UrlResolver;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
+use Phalcon\Mvc\Dispatcher;
+use Phalcon\Flash\Direct as Flash;
+//use Phalcon\Acl;
 
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
@@ -85,21 +88,42 @@ $di->setShared('modelsMetadata', function () {
 $di->setShared('session', function () {
     $session = new SessionAdapter();
     $session->start();
-
     return $session;
 });
-/**
- * Loading routes from the routes.php file
- */
-// $di->set('router', function() {
-// 	return require __DIR__ . '/routers.php';
-// });
+
 /**
  * Start the sendmail
  */
-/**
-* Mail service uses AmazonSES
-*/
 $di->set('mail', function(){
         return new Mail();
 });
+
+/**
+* helper to confirm access and authentication
+*/
+$di->set('auth', function(){
+  return new Auth();
+});
+
+/**
+ *  Registry the Acl
+ */
+$di->set('acl', function() {
+  return new Acl();
+});
+
+/**
+* Seting a dispatcher conponent
+*/
+$di->set('dispatcher', function () {
+    $dispatcher = new Dispatcher();
+    return $dispatcher;
+});
+// $di->set('flash', function () {
+//     return new Flash(array(
+//         'error' => 'alert alert-danger',
+//         'success' => 'alert alert-success',
+//         'notice' => 'alert alert-info',
+//         'warning' => 'alert alert-warning'
+//     ));
+// });

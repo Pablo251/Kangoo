@@ -68,4 +68,25 @@ Nos mata:
 la velocidad
 manejo del frontend
 
+10/11/2015 User navigation validate...
+
+	-acl service [Ready]		
+	-auth - service
+	-ControllerBase validate the unregistred user through the app
+	-acl has a class into library
+		class components
+		private alc;
+		private $privateResources = (Array with private controllers
+		and actions);
+		isPrivate:cotrollerName. Determine if is private
+		
+	-auth has a class into library 
+14/11
+	-auth, acl and services are find and working
+	- Unsigned user can't access to the private zone before it login
+	into the application
+	- Error message deploy by flash phalcon element and dispatcher take
+	a correct view
+	* Cleaning code		
+
 
