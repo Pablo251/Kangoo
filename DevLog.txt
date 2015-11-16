@@ -1,4 +1,5 @@
-﻿03\11\2015 1:00pm - Mail integration
+﻿
+03\11\2015 1:00pm - Mail integration
 	-Nueva tabla en la base de datos
 	-Config.php a�adido el array mail
 	-Cree el model de mail_confirmation
@@ -87,6 +88,19 @@ manejo del frontend
 	into the application
 	- Error message deploy by flash phalcon element and dispatcher take
 	a correct view
-	* Cleaning code		
+	* Cleaning code and commit READY
+DEFINIG		
+- hacer una busqueda por el username...
+-[*] Ver si el resultado almacenado en la variable de busqueda es true
+SI -{ -[*]Ver si se encuentra activo
+	SI -{ Registrar la session *HACER EL DESPICHE CON EL AUTH*}
+	NO -{ Notificar que el usuario se encuetra inactivo}
+    }	
+NO -{ Notificar que no se ha encontrado ningún usuario como tal}
 
+$2a$08$RPMOUzM8kZGSCNMPlflsNOz/l6gL4XWgr6PM0TA/kZ/qeX64svDNy
+
+	15/11
+	-Register a user session
+	-Session seted!
 

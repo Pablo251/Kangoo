@@ -5,6 +5,8 @@ use Phalcon\Forms\Element\Password;
 use Phalcon\Forms\Element\Submit;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\Confirmation;
+// use Phalcon\Mvc\Model\Message as Message;
+// use Phalcon\Mvc\Model\MessageInterface;
 /**
 * This is a login form, that allow the users can acces to they accounts
 */
@@ -52,4 +54,15 @@ class LoginForm extends Form
       }
     }
   }
+
+  /**
+  *  Adding errors after the controller post
+  * @param String $name: Name of field.
+  * @param String $message: Custom message.
+  */
+  public function addFormMessages($name, $message){
+    $messages = $this->getMessagesFor($name);
+    $messages->appendMessage(new  \Phalcon\Validation\Message($message));
+  }
+
 }

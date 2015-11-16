@@ -12,7 +12,7 @@ class SessionController extends ControllerBase
   public function indexAction()
   {
     //This redirect to another Controller/Action
-    $this->response->redirect('index');
+    $this->response->redirect('session/login');
     // Disable the view to avoid rendering
     $this->view->disable();
   }
@@ -22,9 +22,27 @@ class SessionController extends ControllerBase
     $form = new LoginForm();
     if ($this->request->isPost()) {
       if ($form->isValid($this->request->getPost()) != false) {
-        echo "<h1>So near! Our App is under development... ;) </h1>";
+
+        //$user = User::findFirstByUsername($this->request->getPost('username', 'striptags'));
+        //$username =  $this->request->getPost('username', 'striptags');
+        $password = $this->request->getPost('password');
+        $user = User::findFirst(array(
+            "username = :username: AND active = 1",
+            'bind' => array('username' => $this->request->getPost('username', 'striptags'))
+          ));
+        //var_dump($user);
+        // successfully find
+        if ($user && $this->security->checkHash($password, $user->password)) {
+            //Sent the user to set into the application
+            $this->auth->setAccess($user);
+            return $this->response->redirect('dashboard');
+        }else {
+          $form->addFormMessages('username', 'Username name is invalid or not has been activated');
+          $form->addFormMessages('password', 'information does not match');
+        }
       }
     }
+    //var_dump($form->messages);
     $this->view->form = $form;
   }
   /**
