@@ -103,4 +103,6 @@ $2a$08$RPMOUzM8kZGSCNMPlflsNOz/l6gL4XWgr6PM0TA/kZ/qeX64svDNy
 	15/11
 	-Register a user session
 	-Session seted!
+	16/11
+	-Login changes[username convert to lower case before run the select]
 

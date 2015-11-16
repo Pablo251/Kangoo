@@ -16,21 +16,22 @@ class SessionController extends ControllerBase
     // Disable the view to avoid rendering
     $this->view->disable();
   }
-
+  /**
+  * Login action, detect if is a valid or invalid user
+  */
   public function loginAction()
   {
     $form = new LoginForm();
-    if ($this->request->isPost()) {
-      if ($form->isValid($this->request->getPost()) != false) {
 
-        //$user = User::findFirstByUsername($this->request->getPost('username', 'striptags'));
-        //$username =  $this->request->getPost('username', 'striptags');
+    if ($this->request->isPost()) {
+
+      if ($form->isValid($this->request->getPost()) != false) {
         $password = $this->request->getPost('password');
+        //Find the username and check if this is active into the application
         $user = User::findFirst(array(
             "username = :username: AND active = 1",
-            'bind' => array('username' => $this->request->getPost('username', 'striptags'))
+            'bind' => array('username' => strtolower($this->request->getPost('username', 'striptags')))
           ));
-        //var_dump($user);
         // successfully find
         if ($user && $this->security->checkHash($password, $user->password)) {
             //Sent the user to set into the application

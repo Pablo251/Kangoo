@@ -5,21 +5,22 @@ use Phalcon\Mvc\Dispatcher;
 
 class ControllerBase extends Controller
 {
+  /**
+  * Init method
+  */
   protected function initialize(){
     // Prepend the application name to the title
     $this->tag->prependTitle('Kangoo ');
-    //$this->view->setTemplateBefore('public');
   }
+
   /**
   * @param Dispatcher $dispatcher
   */
   public function beforeExecuteRoute(Dispatcher $dispatcher){
     $controllerName = $dispatcher->getControllerName();
-    //var_dump($this->router);
     // This confirm a private zone
     if ($this->acl->isPrivate($controllerName)) {
       if (!is_null($this->auth->getAccess())) {
-        echo "no es nulo";
       }
       else {
         //Display a error by a flash component
@@ -32,6 +33,6 @@ class ControllerBase extends Controller
         return false;
       }
     }
-    
+
   }
 }
