@@ -1,3 +1,4 @@
+<?php echo $this->getContent(); ?>
 <div id="index-banner">
 <div class="section no-pad-bot">
 <div style="width: 100%;">
