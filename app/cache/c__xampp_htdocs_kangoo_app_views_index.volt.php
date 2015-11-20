@@ -12,8 +12,8 @@
 </head>
 <body>
   <ul id="dropdown1" class="dropdown-content">
-    <li ><a href="http://localhost:81/kangoo/session/signup">Enviados</a></li>
-    <li><a href="#!">Salida</a></li>
+    <li ><a href="session/signup">Enviados</a></li>
+    <li><a href="index/principal">Salida</a></li>
   </ul>
   <nav>
     <div class="nav-wrapper blue lighten-1">
@@ -24,7 +24,7 @@
     </div>
   </nav>
   <?php echo $this->getContent(); ?>
-  <div class="fixed-action-btn horizontal" style="bottom: 90%; right: 22px;">
+  <div class="fixed-action-btn horizontal" style="bottom: 94%; right: 22px;">
     <a class="btn-floating btn-large blue lighten-3">+</a>
   </div>
   <footer class="page-footer blue accent-5" style="display: flex; min-height: 20vh; flex-direction: column;">

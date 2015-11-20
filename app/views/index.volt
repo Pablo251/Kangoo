@@ -12,8 +12,8 @@
 </head>
 <body>
   <ul id="dropdown1" class="dropdown-content">
-    <li ><a href="http://localhost:81/kangoo/session/signup">Enviados</a></li>
-    <li><a href="#!">Salida</a></li>
+    <li ><a href="session/signup">Enviados</a></li>
+    <li><a href="index/principal">Salida</a></li>
   </ul>
   <nav>
     <div class="nav-wrapper blue lighten-1">
@@ -46,7 +46,7 @@
     </div>
   </footer>
   {{ javascript_include('js/jquery-2.1.4.min.js')}}
-  {{ javascript_include('js/boot.js')}}
+  <!-- {{ javascript_include('js/boot.js')}} -->
   {{ javascript_include('js/materialize.min.js') }}
 </body>
 </html>
