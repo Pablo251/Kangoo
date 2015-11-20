@@ -11,7 +11,28 @@
   {{ get_title()}}
 </head>
 <body>
+  <ul id="dropdown1" class="dropdown-content">
+    <li ><a href="http://localhost:81/kangoo/index/enviados">Enviados</a></li>
+    <li><a href="http://localhost:81/kangoo/index/principal">Salida</a></li>
+  </ul>
+  <nav>
+    <div class="nav-wrapper blue lighten-1">
+      <ul class="right hide-on-down-and-down">
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-button waves-effect" data-belowOrigin= "true" href="#!" data-activates="dropdown1"><i class="mdi-navigation-menu"></i></a></li>
+      </ul>
+    </div>
+  </nav>
   {{ content() }}
+  <div class="fixed-action-btn horizontal" style="bottom: 30%; RIGHT: 50px;">
+    <a class="btn-floating btn-large blue lighten-3">OPTIONS</a>
+    </a>
+    <ul>
+      <li><a class="btn-floating blue lighten-1"><i class="material-icons">SEND</i></a></li>
+      <li><a class="btn-floating blue lighten-2"><i class="material-icons">OUTPUT</i></a></li>
+      <li><a class="btn-floating blue lighten-3"><i class="material-icons">CREATE</i></a></li>
+    </ul>
+  </div>
   <div class="container">
     <table  class="highlight centered striped responsive-table">
       <thead>
