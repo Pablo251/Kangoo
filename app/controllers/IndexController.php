@@ -16,6 +16,10 @@ class IndexController extends ControllerBase
   {
     
   }
+ public function enviadosAction()
+  {
+    
+  }
   public function monyAction()
   {
    print_r(APP_PATH);
