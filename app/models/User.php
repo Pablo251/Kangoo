@@ -1,6 +1,8 @@
 <?php
 
 use Phalcon\Mvc\Model\Validator\Email as Email;
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Validator\Uniqueness;
 
 class User extends \Phalcon\Mvc\Model
 {
@@ -68,6 +70,7 @@ class User extends \Phalcon\Mvc\Model
      */
     public function validation()
     {
+        //Validate a correct email format
         $this->validate(
             new Email(
                 array(
@@ -76,6 +79,14 @@ class User extends \Phalcon\Mvc\Model
                 )
             )
         );
+        $this->validate(new Uniqueness(array(
+            "field" => "email",
+            "message" => "The email is already registered"
+        )));
+        $this->validate(new Uniqueness(array(
+            "field" => "username",
+            "message" => "The Username is already registered"
+        )));
 
         if ($this->validationHasFailed() == true) {
             return false;

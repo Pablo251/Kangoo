@@ -1,4 +1,5 @@
-﻿03\11\2015 1:00pm - Mail integration
+﻿
+03\11\2015 1:00pm - Mail integration
 	-Nueva tabla en la base de datos
 	-Config.php a�adido el array mail
 	-Cree el model de mail_confirmation
@@ -68,4 +69,40 @@ Nos mata:
 la velocidad
 manejo del frontend
 
+10/11/2015 User navigation validate...
 
+	-acl service [Ready]		
+	-auth - service
+	-ControllerBase validate the unregistred user through the app
+	-acl has a class into library
+		class components
+		private alc;
+		private $privateResources = (Array with private controllers
+		and actions);
+		isPrivate:cotrollerName. Determine if is private
+		
+	-auth has a class into library 
+14/11
+	-auth, acl and services are find and working
+	- Unsigned user can't access to the private zone before it login
+	into the application
+	- Error message deploy by flash phalcon element and dispatcher take
+	a correct view
+	* Cleaning code and commit READY
+DEFINIG		
+- hacer una busqueda por el username...
+-[*] Ver si el resultado almacenado en la variable de busqueda es true
+SI -{ -[*]Ver si se encuentra activo
+	SI -{ Registrar la session *HACER EL DESPICHE CON EL AUTH*}
+	NO -{ Notificar que el usuario se encuetra inactivo}
+    }	
+NO -{ Notificar que no se ha encontrado ningún usuario como tal}
+
+$2a$08$RPMOUzM8kZGSCNMPlflsNOz/l6gL4XWgr6PM0TA/kZ/qeX64svDNy
+
+	15/11
+	-Register a user session
+	-Session seted!
+	16/11
+	-Login changes[username convert to lower case before run the select]
+	- Working in the model USER... Adding "uniques" options as mail and username
