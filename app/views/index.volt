@@ -13,6 +13,7 @@
     <body>
         {{ content() }}
         {{ javascript_include('js/jquery-2.1.4.min.js')}}
+        {{ javascript_include('js/boot.js')}}
         {{ javascript_include('js/materialize.min.js') }}
     </body>
 </html>

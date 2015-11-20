@@ -18,6 +18,7 @@ class ControllerBase extends Controller
   */
   public function beforeExecuteRoute(Dispatcher $dispatcher){
     $controllerName = $dispatcher->getControllerName();
+    //si es una petición get
     // This confirm a private zone
     if ($this->acl->isPrivate($controllerName)) {
       if (!is_null($this->auth->getAccess())) {

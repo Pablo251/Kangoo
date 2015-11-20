@@ -105,4 +105,4 @@ $2a$08$RPMOUzM8kZGSCNMPlflsNOz/l6gL4XWgr6PM0TA/kZ/qeX64svDNy
 	-Session seted!
 	16/11
 	-Login changes[username convert to lower case before run the select]
-
+	- Working in the model USER... Adding "uniques" options as mail and username
