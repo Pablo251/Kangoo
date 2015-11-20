@@ -23,75 +23,75 @@ class SignUpForm extends Form
     // Name, added a placeholder and content
     $name = new Text('name', array(
       'placeholder' => 'Type your username'
-    ));
+      ));
     $name->setLabel('Name');
     $name->addValidators(array(
       new PresenceOf(array(
         'message' => 'The name is required'
-      ))
-    ));
+        ))
+      ));
 
     $this->add($name);
     // Email
     $email = new Text('email', array(
       'placeholder' => 'your email'
-    ));
+      ));
     //label
     $email->setLabel('E-Mail');
     $email->addValidators(array(
       new PresenceOf(array(
         'message' => 'The e-mail is required'
-      )),
+        )),
       new Email(array(
         'message' => 'The e-mail is not valid'
-      ))
-    ));
+        ))
+      ));
 
     $this->add($email);
     // Password
     $password = new Password('password', array(
       'placeholder' => 'password'
-    ));
+      ));
     $password->setLabel('Password');
     // This is a Validator
     $password->addValidators(array(
       new PresenceOf(array(
         'message' => 'The password is required'
-      )),
+        )),
       new StringLength(array(
         'min' => 8,
         'messageMinimum' => 'Password is too short. Minimum 8 characters'
-      )),
+        )),
       new Confirmation(array(
         'message' => 'Password doesn\'t match confirmation',
         'with' => 'confirmPassword'
-      ))
-    ));
+        ))
+      ));
 
     $this->add($password);
     // Confirm Password
     $confirmPassword = new Password('confirmPassword', array(
       'placeholder' => 'password'
-    ));
+      ));
     $confirmPassword->setLabel('Confirm Password');
     $confirmPassword->addValidators(array(
       new PresenceOf(array(
         'message' => 'The confirmation password is required'
-      ))
-    ));
+        ))
+      ));
     $this->add($confirmPassword);
 
     // Remember
     $terms = new Check('terms', array(
       'value' => 'yes'
-    ));
+      ));
 
     $terms->setLabel('Accept terms and conditions');
 
     $terms->addValidator(new Identical(array(
       'value' => 'yes',
       'message' => 'Terms and conditions must be accepted'
-    )));
+      )));
 
     $this->add($terms);
 
@@ -106,7 +106,7 @@ class SignUpForm extends Form
     // Sign Up
     $this->add(new Submit('Sign Up', array(
       'class' => 'btn btn-success'
-    )));
+      )));
   }
 
   /**

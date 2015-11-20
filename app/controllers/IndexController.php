@@ -55,5 +55,9 @@ class IndexController extends ControllerBase
       $this->response->setStatusCode(404, "Not Found");
     }
   }
+  public function principalAction()
+  {
+
+  }
   //***----------------------------------------------------------------------***//
 }

@@ -16,24 +16,24 @@ class LoginForm extends Form
     // Username
     $username = new Text('username', array(
       'placeholder' => 'Username'
-    ));
+      ));
 
     $username->addValidators(array(
       new PresenceOf(array(
         'message' => 'The username is required'
-      ))
-    ));
+        ))
+      ));
 
     $this->add($username);
 
     // Password
     $password = new Password('password', array(
       'placeholder' => 'Password'
-    ));
+      ));
 
     $password->addValidator(new PresenceOf(array(
       'message' => 'The password is required'
-    )));
+      )));
 
     $password->clear();
 
@@ -41,7 +41,7 @@ class LoginForm extends Form
 
     $this->add(new Submit('Continue', array(
       'class' => 'btn btn-success'
-    )));
+      )));
   }
   /**
   * Prints messages for a specific element
