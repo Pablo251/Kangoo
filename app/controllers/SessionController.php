@@ -24,19 +24,27 @@ class SessionController extends ControllerBase
     $form = new LoginForm();
 
     if ($this->request->isPost()) {
-
       if ($form->isValid($this->request->getPost()) != false) {
         $password = $this->request->getPost('password');
         //Find the username and check if this is active into the application
         $user = User::findFirst(array(
-            "username = :username: AND active = 1",
-            'bind' => array('username' => strtolower($this->request->getPost('username', 'striptags')))
-          ));
+          "username = :username: AND active = 1",
+          'bind' => array('username' => strtolower($this->request->getPost('username', 'striptags')))
+        ));
         // successfully find
         if ($user && $this->security->checkHash($password, $user->password)) {
-            //Sent the user to set into the application
-            $this->auth->setAccess($user);
-            return $this->response->redirect('dashboard');
+          //Sent the user to set into the application
+          $this->auth->setAccess($user);
+          //Remember me: If is diferent to false assign a token to the user
+          if ($this->request->getPost('remember')!="false") {
+            $user->assign(array(
+                'token' => $this->request->getPost('remember')
+            ));
+            if (!$user->save()) {
+                $this->flash->error($user->getMessages());
+            }
+          }
+          return $this->response->redirect('dashboard');
         }else {
           $form->addFormMessages('username', 'Username name is invalid or not has been activated');
           $form->addFormMessages('password', 'information does not match');
@@ -59,7 +67,8 @@ class SessionController extends ControllerBase
           'username' => $this->request->getPost('name', 'striptags'),
           'password' => $this->security->hash($this->request->getPost('password')),
           'email' => $this->request->getPost('email'),
-          'active' => 0
+          'active' => 0,
+          'token' => "false"
         ));
         if ($user->save()) {
           return $this->dispatcher->forward(array(
@@ -127,4 +136,8 @@ class SessionController extends ControllerBase
       'action' => 'index'
     ));
   }
+
+  /**
+  * ajaxPost
+  */
 }

@@ -7,6 +7,7 @@ class IndexController extends ControllerBase
     //Set a title in the index file of view
     $this->tag->setTitle("Welcome to Kangoo");
   }
+
   public function indexAction()
   {
     if ($this->request->isPost()) {
@@ -34,7 +35,10 @@ class IndexController extends ControllerBase
   public function errorsAction(){
 
   }
-  public function ajaxAction()
+  /**
+  * This is a ajax GET execution..
+  */
+  public function logAction()
   {
     //deshabilitamos la vista para peticiones ajax
     $this->view->disable();
@@ -55,9 +59,37 @@ class IndexController extends ControllerBase
       $this->response->setStatusCode(404, "Not Found");
     }
   }
+  /**
+  * Ajax POST execution
+  * @return Boolean: true: successfully remenber, false: not is incide
+  */
+  public function logPostAction()
+  {
+    //Disable
+    $this->view->disable();
+    //Is Post!
+    if($this->request->isPost())
+    {
+      //Important! If is a Ajax Petition
+      if($this->request->isAjax())
+      {
+        //Return Manipulation
+        $caja1 = $this->request->getPost("valorCaja1");
+        $caja1 = $this->request->getPost("valorCaja2");
+
+        $this->response->setJsonContent(array('res' => array("email" => $caja1, "password" => $caja1)));
+        $this->response->setStatusCode(200, "OK");
+        $this->response->send();
+      }
+    }
+    else
+    {
+      $this->response->setStatusCode(404, "Not Found");
+    }
+  }
   public function principalAction()
   {
-    
+
   }
   //***----------------------------------------------------------------------***//
 }

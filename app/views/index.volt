@@ -9,6 +9,27 @@
   <meta name="description" content="Kangoo as a WebMail manager">
   <meta name="author" content="Susana Corrales & Pablo Arce Cascante">
   {{ get_title()}}
+  {{ javascript_include('js/jquery-2.1.4.min.js')}}
+  <script type="text/javascript">
+  $(document).ready(function() {
+    //Try Ajax post
+    var parametros = {
+      "valorCaja1" : "500",
+      "valorCaja2" : "10000"
+    };
+    $.ajax({
+      data:  parametros,
+      url:   'index/logPost',
+      type:  'post',
+      beforeSend: function () {
+        console.log("Processando");
+      },
+      success:  function (response) {
+        console.log(response);
+      }
+    });
+  });
+  </script>
 </head>
 <body>
   <ul id="dropdown1" class="dropdown-content">
@@ -45,7 +66,6 @@
       </div>
     </div>
   </footer>
-  {{ javascript_include('js/jquery-2.1.4.min.js')}}
   <!-- {{ javascript_include('js/boot.js')}} -->
   {{ javascript_include('js/materialize.min.js') }}
 </body>

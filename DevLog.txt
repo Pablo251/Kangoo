@@ -106,3 +106,30 @@ $2a$08$RPMOUzM8kZGSCNMPlflsNOz/l6gL4XWgr6PM0TA/kZ/qeX64svDNy
 	16/11
 	-Login changes[username convert to lower case before run the select]
 	- Working in the model USER... Adding "uniques" options as mail and username
+	- Remerme with js and Ajax
+		
+		login-view
+			JS token added
+		DB+
+			User table: New fiel "token" added
+		UserModel+
+			Add new entitie "token"
+		SessionController+
+			signupAction: setup false in the new fiel token 
+			when an user create their account
+			loginAction: if the post.remember is not false,
+			update the user user token with the new token
+		login-view
+			create a key kangoo with the user info included
+			the token into the local storage
+			Ready!
+		Ajax Post!
+			Now the app can make post with ajax
+			php
+			     acl
+				logged user can't acces to the login/sigup
+			     BeforeExecuteRoute...
+				if the user is incide can't access to the 
+				login and signup
+
+	
