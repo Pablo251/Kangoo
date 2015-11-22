@@ -131,5 +131,6 @@ $2a$08$RPMOUzM8kZGSCNMPlflsNOz/l6gL4XWgr6PM0TA/kZ/qeX64svDNy
 			     BeforeExecuteRoute...
 				if the user is incide can't access to the 
 				login and signup
+			     
 
 	

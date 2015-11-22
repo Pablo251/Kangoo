@@ -13,12 +13,13 @@
   <script type="text/javascript">
   $(document).ready(function() {
     //Try Ajax post
+    var localUser = jQuery.parseJSON(localStorage.kangoo);
     var parametros = {
-      "valorCaja1" : "500",
-      "valorCaja2" : "10000"
+      "username" : localUser[0].username,
+      "token" : localUser[0].token
     };
     $.ajax({
-      data:  parametros,
+      data:  {"username" : localUser[0].username,"token" : localUser[0].token},
       url:   'index/logPost',
       type:  'post',
       beforeSend: function () {

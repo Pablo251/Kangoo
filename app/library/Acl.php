@@ -30,6 +30,19 @@ class Acl extends Component
        'output'
      )
   );
+
+  /**
+  * If exist a session (User Logged) this disabled a signup and login before close
+  * the existent user session
+  */
+  private $closedResources = array(
+    'session' => array(
+      'index',
+      'login',
+      'signup'
+     )
+  );
+
   /**
   * Allow accees to the acl
   */
@@ -45,5 +58,18 @@ class Acl extends Component
   public function isPrivate($controllerName){
     $controllerName = strtolower($controllerName);
     return array_key_exists($controllerName, $this->privateResources);
+  }
+
+  /**
+  *
+  */
+  public function isClosed($controllerName, $actionName){
+    $controllerName = strtolower($controllerName);
+    $actionName     = strtolower($actionName);
+    if (array_key_exists($controllerName, $this->closedResources)) {
+        return in_array($actionName, $this->closedResources[$controllerName]);
+    }
+    return false;
+    //return array_key_exists($controllerName, $this->closedResources);
   }
 }

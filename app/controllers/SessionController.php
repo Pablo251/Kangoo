@@ -136,8 +136,4 @@ class SessionController extends ControllerBase
       'action' => 'index'
     ));
   }
-
-  /**
-  * ajaxPost
-  */
 }

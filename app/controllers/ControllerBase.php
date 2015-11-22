@@ -18,10 +18,21 @@ class ControllerBase extends Controller
   */
   public function beforeExecuteRoute(Dispatcher $dispatcher){
     $controllerName = $dispatcher->getControllerName();
-    //si es una petición get
+    $actionName = $dispatcher->getActionName();
     // This confirm a private zone
+    //check for a closed controller and Action is exist a current session
+    if ($this->acl->isClosed($controllerName, $actionName)) {
+      if (!is_null($this->auth->getAccess())) {
+        //This redirect to another Controller/Action
+        $this->response->redirect('dashboard');
+        // Disable the view to avoid rendering
+        $this->view->disable();
+      }
+      return true;
+    }
     if ($this->acl->isPrivate($controllerName)) {
       if (!is_null($this->auth->getAccess())) {
+        echo "Logeado";
       }
       else {
         //Display a error by a flash component
@@ -34,6 +45,6 @@ class ControllerBase extends Controller
         return false;
       }
     }
-
+    // ---
   }
 }

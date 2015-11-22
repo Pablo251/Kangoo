@@ -73,11 +73,15 @@ class IndexController extends ControllerBase
       //Important! If is a Ajax Petition
       if($this->request->isAjax())
       {
+        //Check for an existent session
+        if (is_null($this->auth->getAccess())) {
+          
+        }
         //Return Manipulation
-        $caja1 = $this->request->getPost("valorCaja1");
-        $caja1 = $this->request->getPost("valorCaja2");
+        $caja1 = $this->request->getPost('token');
+        //$caja1 = $this->request->getPost("valorCaja2");
 
-        $this->response->setJsonContent(array('res' => array("email" => $caja1, "password" => $caja1)));
+        $this->response->setJsonContent(array('res' => array("email" => $caja1, "password" => "")));
         $this->response->setStatusCode(200, "OK");
         $this->response->send();
       }
