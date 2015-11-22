@@ -13,16 +13,31 @@
   <script type="text/javascript">
   $(document).ready(function() {
     //Try Ajax post
+    if (localStorage["kangoo"]==undefined) {
+      alert("Create kangoo");
+      localStorage.setItem("kangoo", "[{\"username\":\"null\",\"token\":\"false\"}]");
+    }
     var localUser = jQuery.parseJSON(localStorage.kangoo);
     $.ajax({
       data:  {"username" : localUser[0].username,"token" : localUser[0].token},
       url:   'index/logPost',
       type:  'post',
+      contentType: "application/json; charset=utf-8",
       beforeSend: function () {
         console.log("Processando");
       },
       success:  function (response) {
-        console.log(response);
+        //actions after post
+        var objPost = "";
+        try {
+          objPost = jQuery.parseJSON(response);
+          console.log(objPost);
+          if (objPost.res == "successful") {
+            location.reload();
+          }
+        } catch (e) {
+          console.log(response);
+        }
       }
     });
   });

@@ -131,6 +131,12 @@ $2a$08$RPMOUzM8kZGSCNMPlflsNOz/l6gL4XWgr6PM0TA/kZ/qeX64svDNy
 			     BeforeExecuteRoute...
 				if the user is incide can't access to the 
 				login and signup
-			     
+			     index controller::ajaxPost
+				Validate is the session is allready
+					if not, create a session
+					    Find the username and token, then
+					    if found... Log into the app
+					    the selected user.
+					    
 
 	

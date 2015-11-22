@@ -73,15 +73,23 @@ class IndexController extends ControllerBase
       //Important! If is a Ajax Petition
       if($this->request->isAjax())
       {
+        $this->response->setRawHeader("HTTP/1.1 200 OK");
         //Check for an existent session
         if (is_null($this->auth->getAccess())) {
-          
+          //Check for successful authentication
+          if ($this->auth->appRemember($this->request->getPost('username'),$this->request->getPost('token'))) {
+            $this->response->setJsonContent(array('res' => "successful"));
+          }else {
+            $this->response->setJsonContent(array('res' => "fail_session"));
+          }
+        }else {
+          $this->response->setJsonContent(array('res' =>"exist_session"));
         }
         //Return Manipulation
-        $caja1 = $this->request->getPost('token');
+        //$caja1 = $this->request->getPost('token');
         //$caja1 = $this->request->getPost("valorCaja2");
 
-        $this->response->setJsonContent(array('res' => array("email" => $caja1, "password" => "")));
+        //$this->response->setJsonContent(array('res' => array("email" => $caja1, "password" => "")));
         $this->response->setStatusCode(200, "OK");
         $this->response->send();
       }
@@ -93,7 +101,20 @@ class IndexController extends ControllerBase
   }
   public function principalAction()
   {
-
+    $username = "pablo251";
+    $token = "ly4b35jvokj7cik9541ug6weqgjsjor";
+    $user = User::findFirst(array(
+      "username = :username: and token = :token: AND active = 1",
+      'bind' => array(
+        'username' => strtolower($username),
+        'token'    => $token
+      ))
+    );
+    //var_dump($user);
+    if ($user==null) {
+    echo "Como tal";
+    }
+    print_r($user);
   }
   //***----------------------------------------------------------------------***//
 }
