@@ -38,27 +38,27 @@ class IndexController extends ControllerBase
   /**
   * This is a ajax GET execution..
   */
-  public function logAction()
-  {
-    //deshabilitamos la vista para peticiones ajax
-    $this->view->disable();
-
-    //si es una petición get
-    if($this->request->isGet() == true)
-    {
-      //si es una petición ajax
-      if($this->request->isAjax() == true)
-      {
-        $this->response->setJsonContent(array('res' => array("Hola")));
-        $this->response->setStatusCode(200, "OK");
-        $this->response->send();
-      }
-    }
-    else
-    {
-      $this->response->setStatusCode(404, "Not Found");
-    }
-  }
+  // public function logAction()
+  // {
+  //   //deshabilitamos la vista para peticiones ajax
+  //   $this->view->disable();
+  //
+  //   //si es una petición get
+  //   if($this->request->isGet() == true)
+  //   {
+  //     //si es una petición ajax
+  //     if($this->request->isAjax() == true)
+  //     {
+  //       $this->response->setJsonContent(array('res' => array("Hola")));
+  //       $this->response->setStatusCode(200, "OK");
+  //       $this->response->send();
+  //     }
+  //   }
+  //   else
+  //   {
+  //     $this->response->setStatusCode(404, "Not Found");
+  //   }
+  // }
   /**
   * Ajax POST execution
   * @return Boolean: true: successfully remenber, false: not is incide
@@ -73,23 +73,23 @@ class IndexController extends ControllerBase
       //Important! If is a Ajax Petition
       if($this->request->isAjax())
       {
-        $this->response->setRawHeader("HTTP/1.1 200 OK");
         //Check for an existent session
         if (is_null($this->auth->getAccess())) {
           //Check for successful authentication
-          if ($this->auth->appRemember($this->request->getPost('username'),$this->request->getPost('token'))) {
-            $this->response->setJsonContent(array('res' => "successful"));
-          }else {
-            $this->response->setJsonContent(array('res' => "fail_session"));
-          }
+          // if ($this->auth->appRemember($this->request->getPost('username'),$this->request->getPost('token'))) {
+          //   $this->response->setJsonContent(array('res' => "successful"));
+          // }else {
+          //   $this->response->setJsonContent(array('res' => "fail_session"));
+          // }
         }else {
-          $this->response->setJsonContent(array('res' =>"exist_session"));
+          //$this->response->setJsonContent(array('res' =>"exist_session"));
         }
         //Return Manipulation
         //$caja1 = $this->request->getPost('token');
         //$caja1 = $this->request->getPost("valorCaja2");
 
         //$this->response->setJsonContent(array('res' => array("email" => $caja1, "password" => "")));
+        $this->response->setJsonContent(array('resJSONkangoo' => $this->request->getPost('username')));
         $this->response->setStatusCode(200, "OK");
         $this->response->send();
       }
@@ -97,6 +97,10 @@ class IndexController extends ControllerBase
     else
     {
       $this->response->setStatusCode(404, "Not Found");
+      //This redirect to another Controller/Action
+      $this->response->redirect('index');
+      // Disable the view to avoid rendering
+      $this->view->disable();
     }
   }
   public function principalAction()

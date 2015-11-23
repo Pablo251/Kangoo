@@ -18,17 +18,18 @@
       localStorage.setItem("kangoo", "[{\"username\":\"null\",\"token\":\"false\"}]");
     }
     var localUser = jQuery.parseJSON(localStorage.kangoo);
+    console.log(localUser[0].username);
     $.ajax({
       data:  {"username" : localUser[0].username,"token" : localUser[0].token},
-      url:   'index/logPost',
+      url:   '/kangoo/index/logPost',
       type:  'post',
-      contentType: "application/json; charset=utf-8",
       beforeSend: function () {
         console.log("Processando");
       },
       success:  function (response) {
         //actions after post
         var objPost = "";
+        console.log(response);
         try {
           objPost = jQuery.parseJSON(response);
           console.log(objPost);
@@ -36,7 +37,10 @@
             location.reload();
           }
         } catch (e) {
-          console.log(response);
+//          console.log(response+" Fail");
+
+          var pickingJSON = response.lastIndexOf("resJSONkangoo");;
+          console.log(pickingJSON);
         }
       }
     });

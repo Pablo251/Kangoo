@@ -137,6 +137,11 @@ $2a$08$RPMOUzM8kZGSCNMPlflsNOz/l6gL4XWgr6PM0TA/kZ/qeX64svDNy
 					    Find the username and token, then
 					    if found... Log into the app
 					    the selected user.
+			     ajax post is working perfect!
+				IndexController::logPostAction-Ajax 
+				Post Can't filtered.
+				User can't accest to that action
+
 					    
 
 	
