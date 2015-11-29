@@ -19,46 +19,32 @@ class IndexController extends ControllerBase
       }
     }
   }
-  //My sandbox tester :D
-  private $arrayName = array('dashboard' => array('hola' ,'adios' ));
-  public function monyAction()
-  {
-    //print_r($this->acl);
-    //  $prueba = array_key_exists('oard', $this->arrayName);
-    //  if ($prueba==false) {
-    //    echo "Si está";
-    //  }else{
-    //    echo "no ta :3";
-    //  }
-    var_dump($this->session->get('auth-identity'));
-  }
-  public function errorsAction(){
 
-  }
   /**
   * This is a ajax GET execution..
   */
-  // public function logAction()
-  // {
-  //   //deshabilitamos la vista para peticiones ajax
-  //   $this->view->disable();
-  //
-  //   //si es una petición get
-  //   if($this->request->isGet() == true)
-  //   {
-  //     //si es una petición ajax
-  //     if($this->request->isAjax() == true)
-  //     {
-  //       $this->response->setJsonContent(array('res' => array("Hola")));
-  //       $this->response->setStatusCode(200, "OK");
-  //       $this->response->send();
-  //     }
-  //   }
-  //   else
-  //   {
-  //     $this->response->setStatusCode(404, "Not Found");
-  //   }
-  // }
+  public function logAction()
+  {
+    //deshabilitamos la vista para peticiones ajax
+    $this->view->disable();
+
+    //si es una petición get
+    if($this->request->isGet() == true)
+    {
+      //si es una petición ajax
+      if($this->request->isAjax() == true)
+      {
+        $this->response->setJsonContent(array('res' => array("Hola")));
+        $this->response->setStatusCode(200, "OK");
+        $this->response->send();
+      }
+    }
+    else
+    {
+      $this->response->setStatusCode(404, "Not Found");
+    }
+  }
+
   /**
   * Ajax POST execution
   * @return Boolean: true: successfully remenber, false: not is incide
@@ -76,20 +62,20 @@ class IndexController extends ControllerBase
         //Check for an existent session
         if (is_null($this->auth->getAccess())) {
           //Check for successful authentication
-          // if ($this->auth->appRemember($this->request->getPost('username'),$this->request->getPost('token'))) {
-          //   $this->response->setJsonContent(array('res' => "successful"));
-          // }else {
-          //   $this->response->setJsonContent(array('res' => "fail_session"));
-          // }
+          if ($this->auth->appRemember($this->request->getPost('username'),$this->request->getPost('token'))) {
+            $this->response->setJsonContent(array('res' => "successful"));
+          }else {
+            $this->response->setJsonContent(array('res' => "fail_session"));
+          }
         }else {
-          //$this->response->setJsonContent(array('res' =>"exist_session"));
+          $this->response->setJsonContent(array('res' =>"exist_session"));
         }
         //Return Manipulation
         //$caja1 = $this->request->getPost('token');
         //$caja1 = $this->request->getPost("valorCaja2");
 
         //$this->response->setJsonContent(array('res' => array("email" => $caja1, "password" => "")));
-        $this->response->setJsonContent(array('resJSONkangoo' => $this->request->getPost('username')));
+        //$this->response->setJsonContent(array('resJSONkangoo' => $this->request->getPost('username')));
         $this->response->setStatusCode(200, "OK");
         $this->response->send();
       }
@@ -114,11 +100,24 @@ class IndexController extends ControllerBase
         'token'    => $token
       ))
     );
-    //var_dump($user);
     if ($user==null) {
     echo "Como tal";
     }
     print_r($user);
   }
-  //***----------------------------------------------------------------------***//
+
+  //My sandbox tester :D
+  private $arrayName = array('dashboard' => array('hola' ,'adios' ));
+  public function monyAction()
+  {
+    //print_r($this->acl);
+    //  $prueba = array_key_exists('oard', $this->arrayName);
+    //  if ($prueba==false) {
+    //    echo "Si está";
+    //  }else{
+    //    echo "no ta :3";
+    //  }
+    var_dump($this->session->get('auth-identity'));
+  }
+//------------------------------------------------------------------------Edge--
 }

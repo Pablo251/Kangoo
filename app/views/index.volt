@@ -10,42 +10,8 @@
   <meta name="author" content="Susana Corrales & Pablo Arce Cascante">
   {{ get_title()}}
   {{ javascript_include('js/jquery-2.1.4.min.js')}}
-  <script type="text/javascript">
-  $(document).ready(function() {
-    //Try Ajax post
-    if (localStorage["kangoo"]==undefined) {
-      alert("Create kangoo");
-      localStorage.setItem("kangoo", "[{\"username\":\"null\",\"token\":\"false\"}]");
-    }
-    var localUser = jQuery.parseJSON(localStorage.kangoo);
-    console.log(localUser[0].username);
-    $.ajax({
-      data:  {"username" : localUser[0].username,"token" : localUser[0].token},
-      url:   '/kangoo/index/logPost',
-      type:  'post',
-      beforeSend: function () {
-        console.log("Processando");
-      },
-      success:  function (response) {
-        //actions after post
-        var objPost = "";
-        console.log(response);
-        try {
-          objPost = jQuery.parseJSON(response);
-          console.log(objPost);
-          if (objPost.res == "successful") {
-            location.reload();
-          }
-        } catch (e) {
-//          console.log(response+" Fail");
-
-          var pickingJSON = response.lastIndexOf("resJSONkangoo");;
-          console.log(pickingJSON);
-        }
-      }
-    });
-  });
-  </script>
+  {{ javascript_include('js/kangoocore.js')}}
+  {{ javascript_include('js/boot.js')}}
 </head>
 <body>
   <ul id="dropdown1" class="dropdown-content">

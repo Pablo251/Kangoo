@@ -52,7 +52,7 @@ class Acl extends Component
 
   /**
   * Determines if a sent controllers is private or not, finding the key.
-  * @param 1: controller name
+  * @param COntrollerName Object: controller name
   * @return boolean {true, if is private: false if not}
   */
   public function isPrivate($controllerName){
@@ -61,7 +61,7 @@ class Acl extends Component
   }
 
   /**
-  *
+  * Detect if the current action is actually closed
   */
   public function isClosed($controllerName, $actionName){
     $controllerName = strtolower($controllerName);
@@ -70,6 +70,5 @@ class Acl extends Component
         return in_array($actionName, $this->closedResources[$controllerName]);
     }
     return false;
-    //return array_key_exists($controllerName, $this->closedResources);
   }
 }

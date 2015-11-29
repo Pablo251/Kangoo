@@ -11,7 +11,12 @@ class DashboardController extends ControllerBase
   public function initialize(){
     parent::initialize();
   }
+
+  /**
+  * This load a mailbox view...
+  */
   public function indexAction(){
     //echo "<h1>Hello " . $this->session->get('authenticated')['username'].".... App is under development :P</h1>" ;
   }
+//------------------------------------------------------------------------Edge--
 }

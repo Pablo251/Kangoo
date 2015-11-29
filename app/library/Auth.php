@@ -43,7 +43,7 @@ class Auth extends Component
         ))
       );
       if ($user!=null) {
-        $this->auth->setAccess($user);
+        $this->setAccess($user);
         return true;
       }else {
         return false;

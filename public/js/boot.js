@@ -1,36 +1,43 @@
-$(document).ready(function () {
-	$.ajax({
-		url: "index"
-	}).done(function(data) 
-	{
-		console.log(data)
-	});
-			var mySession = {
-			"id": "2",
-			"username": "Pablo"
-		};
-		$.post("<?php echo $this->url->get('index') ?>", mySession , function(data)
-		{
-             console.log(data);
-	    }).done(function() { 
-	 
-	        alert("correcto");
-	 
-	    }).fail(function() {
-	 
-	        alert("error"); 
-	    })
-	// Boot should execute to sent the save account
-	if (localStorage.kangoo != "undefined") {
 
-		// $.post("json", mySession, function(){
-		// 	alert("Success!");
-		// });
-		// $.ajax({
-		// 	data: {"parametro1" : "valor1", "parametro2" : "valor2"},
-		// 	type: "POST",
-		// 	dataType: "json",
-		// 	url: "index/json",
-		// });
-	}
+/**
+* Boostrap JavaScript file.
+* This allow execution
+*/
+$(document).ready(function() {
+  //Set Dafault Settings
+  KANGOO.defaultApp();
+
+  //Get a stored local User
+  var localUser = KANGOO.loadLogUser();
+
+  //** TRY: Ver si estaba agarrando el json correctamente
+  console.log(localUser[0].username);
+
+  //Exution of an AJAX POST
+  $.ajax({
+    data:  {"username" : localUser[0].username,"token" : localUser[0].token},
+    url:   '/kangoo/index/logPost',
+    type:  'post',
+    beforeSend: function () {
+      console.log("Process Post");
+    },
+    success:  function (response) {
+      var objPost = "";
+      //**
+      console.log(response);
+      try {
+        objPost = jQuery.parseJSON(response);
+        //**
+        console.log(objPost);
+        if (objPost.res == "successful") {
+          location.reload();
+        }
+      } catch (e) {
+        alert("Woops! Kangoos have some problems here... (: Calm, tray to close your session and/or loging again :)");
+        console.log(e);
+      }
+    }
+  });
+
+  //----------------------------------------------------------------------------
 });

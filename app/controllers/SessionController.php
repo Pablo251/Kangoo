@@ -16,6 +16,7 @@ class SessionController extends ControllerBase
     // Disable the view to avoid rendering
     $this->view->disable();
   }
+
   /**
   * Login action, detect if is a valid or invalid user
   */
@@ -51,9 +52,9 @@ class SessionController extends ControllerBase
         }
       }
     }
-    //var_dump($form->messages);
     $this->view->form = $form;
   }
+
   /**
   * execute the signup ation, face to an existent user.
   */
@@ -83,6 +84,7 @@ class SessionController extends ControllerBase
     }
     $this->view->form = $form;
   }
+
   /**
   * Account confirmation through the previous sent mail.
   */
@@ -104,36 +106,29 @@ class SessionController extends ControllerBase
         'action' => 'login'
       ));
     }
-
     $confirmation->confirmed = 'Y';
-
     $confirmation->user->active = 1;
-
     /**
     * Change the confirmation to 'confirmed' and update the user to 'active'
     */
     if (!$confirmation->save()) {
-
       foreach ($confirmation->getMessages() as $message) {
         $this->flash->error($message);
       }
-
       return $this->dispatcher->forward(array(
         'controller' => 'index',
         'action' => 'index'
       ));
     }
-
     /**
     * Identify the user in the application
     */
-    //$this->auth->authUserById($confirmation->user->id_user);
-
     $this->flash->success('The email was successfully confirmed');
-
     return $this->dispatcher->forward(array(
       'controller' => 'index',
       'action' => 'index'
     ));
   }
+  
+  // ---------------------------------------------------------------------Edge--
 }
