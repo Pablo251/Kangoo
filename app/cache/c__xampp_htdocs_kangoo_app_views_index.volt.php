@@ -11,6 +11,10 @@
   <?php echo $this->tag->getTitle(); ?>
 </head>
 <body>
+<<<<<<< HEAD
+  <?php echo $this->getContent(); ?>
+  <footer class="page-footer blue accent-5">
+=======
   <ul id="dropdown1" class="dropdown-content">
     <li ><a href="session/signup">Enviados</a></li>
     <li><a href="index/principal">Salida</a></li>
@@ -28,6 +32,7 @@
     <a class="btn-floating btn-large blue lighten-3">+</a>
   </div>
   <footer class="page-footer blue accent-5" style="display: flex; min-height: 20vh; flex-direction: column;">
+>>>>>>> refs/remotes/origin/master
     <div class="container">
       <div class="row">
         <div class="col l9 s15">
@@ -37,6 +42,16 @@
         <div class="col l7 offset-l7 s14">
         </div>
       </div>
+<<<<<<< HEAD
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2015 kangoo.dev
+        <a class="grey-text text-lighten-4 right" href="https://www.facebook.com/josepablo.arcecascante">More Links</a>
+      </div>
+    </div>
+  </footer>
+=======
     </div>
     <div class="footer-copyright">
       <div class="container">
@@ -48,5 +63,6 @@
   <?php echo $this->tag->javascriptInclude('js/jquery-2.1.4.min.js'); ?>
   <?php echo $this->tag->javascriptInclude('js/boot.js'); ?>
   <?php echo $this->tag->javascriptInclude('js/materialize.min.js'); ?>
+>>>>>>> refs/remotes/origin/master
 </body>
 </html>

@@ -1,38 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <?php echo $this->tag->stylesheetLink('css/materialize.min.css'); ?>
+  {{ stylesheet_link('css/materialize.min.css') }}
   <!-- <link href="http://materializecss.com/templates/parallax-template/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Kangoo as a WebMail manager">
   <meta name="author" content="Susana Corrales & Pablo Arce Cascante">
-  <?php echo $this->tag->getTitle(); ?>
+  {{ get_title()}}
 </head>
 <body>
-  <ul id="dropdown1" class="dropdown-content">
-    <li ><a href="http://localhost:81/kangoo/index/enviados">Enviados</a></li>
-    <li><a href="http://localhost:81/kangoo/index/principal">Salida</a></li>
-  </ul>
-  <nav>
-    <div class="nav-wrapper blue lighten-1">
-      <ul class="right hide-on-down-and-down">
-        <!-- Dropdown Trigger -->
-        <li><a class="dropdown-button waves-effect" data-belowOrigin= "true" href="#!" data-activates="dropdown1"><i class="mdi-navigation-menu"></i></a></li>
-      </ul>
-    </div>
-  </nav>
-  <?php echo $this->getContent(); ?>
-  <div class="fixed-action-btn horizontal" style="bottom: 30%; RIGHT: 50px;">
-    <a class="btn-floating btn-large blue lighten-3">OPTIONS</a>
-    </a>
-    <ul>
-      <li><a class="btn-floating blue lighten-1"><i class="material-icons">SEND</i></a></li>
-      <li><a class="btn-floating blue lighten-2"><i class="material-icons">OUTPUT</i></a></li>
-      <li><a class="btn-floating blue lighten-3"><i class="material-icons">CREATE</i></a></li>
-    </ul>
-  </div>
+  {{ content() }}
   <div class="container">
     <table  class="highlight centered striped responsive-table">
       <thead>
@@ -83,8 +62,6 @@
 </br>
 </br>
 </br>
-</br>
-</br>
 </div>
 <div>     
   <ul class="pagination center" >
@@ -98,7 +75,7 @@
   </ul>
 </div>
 </body>
-<?php echo $this->tag->javascriptInclude('js/jquery-2.1.4.min.js'); ?>
-<?php echo $this->tag->javascriptInclude('js/materialize.min.js'); ?>
+{{ javascript_include('js/jquery-2.1.4.min.js')}}
+{{ javascript_include('js/materialize.min.js') }}
 <!-- Dropdown Structure -->
 </html>
