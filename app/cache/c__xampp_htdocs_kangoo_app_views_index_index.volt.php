@@ -8,7 +8,7 @@
 <li class="active" style="opacity: 1; transform: translateX(0px) translateY(0px);">
 <img style="background-image: url(http://www.imageneswiki.com/Uploads/imageneswiki.com/ImagenesGrandes/canguro-playa.jpg); "> <!-- random image -->
 <div class="caption center-align" style="opacity: 1; transform: translateY(0px) translateX(0px);">
-<h1 class="header center blue-text text-darken-2">Kangoo WebMail Manager</h1>
+<h1 class="header center blue-text text-darken-9">Kangoo WebMail Manager</h1>
 <div class="row center">
 <h5 class="header col s12 light">Send mails and manage them with Kangoo... Lets Jump!</h5>
 </div>

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <?php echo $this->tag->stylesheetLink('css/materialize.min.css'); ?>
+  {{ stylesheet_link('css/materialize.min.css') }}
   <!-- <link href="http://materializecss.com/templates/parallax-template/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Kangoo as a WebMail manager">
   <meta name="author" content="Susana Corrales & Pablo Arce Cascante">
-  <?php echo $this->tag->getTitle(); ?>
+  {{ get_title()}}
 </head>
 <body>
   <ul id="dropdown1" class="dropdown-content">
@@ -23,7 +23,7 @@
       </ul>
     </div>
   </nav>
-  <?php echo $this->getContent(); ?>
+  {{ content() }}
   <div class="fixed-action-btn horizontal" style="bottom: 30%; RIGHT: 50px;">
     <a class="btn-floating btn-large blue lighten-3">OPTIONS</a>
     </a>
@@ -98,7 +98,7 @@
   </ul>
 </div>
 </body>
-<?php echo $this->tag->javascriptInclude('js/jquery-2.1.4.min.js'); ?>
-<?php echo $this->tag->javascriptInclude('js/materialize.min.js'); ?>
+{{ javascript_include('js/jquery-2.1.4.min.js')}}
+{{ javascript_include('js/materialize.min.js') }}
 <!-- Dropdown Structure -->
 </html>
