@@ -16,5 +16,4 @@
   </form>
 </div>
 </section>
-<script type="text/javascript">
-</script>
+{{ javascript_include('js/log.js')}}

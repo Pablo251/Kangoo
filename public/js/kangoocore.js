@@ -63,8 +63,34 @@ var KANGOO = KANGOO || {
   outputGate: function(){
 
   },
-  outputAjaxPOST : function(){
-
+  /**
+  * ExecutE an Ajax Post to get the next 10 mails in the output gate...
+  */
+  outputAjaxPOST: function(start, end){
+    $.ajax({
+      data:  {"start" : start ,"end" : end},
+      url:   '/kangoo/dashboard/outputCharger',
+      type:  'post',
+      beforeSend: function () {
+        console.log("Processing new stack of mails...");
+      },
+      success:  function (response) {
+        var objPost = "";
+      //**
+      console.log(response);
+      // try {
+      //   objPost = jQuery.parseJSON(response);
+      //   //**
+      //   console.log(objPost);
+      //   if (objPost.res == "successful") {
+      //     location.reload();
+      //   }
+      // } catch (e) {
+      //   alert("Woops! Kangoos have some problems here... (: Calm, tray to close your session and/or loging again :)");
+      //   console.log(e);
+      // }
+    }
+  });
   },
   sayHello: function (){
     alert("Hello");

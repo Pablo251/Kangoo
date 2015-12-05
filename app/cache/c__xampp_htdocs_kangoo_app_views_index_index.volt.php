@@ -1,10 +1,6 @@
 <?php echo $this->getContent(); ?>
-<div id="index-banner">
-<div class="section no-pad-bot">
-<div style="width: 100%;">
-<br><br>
-<div class="slider" style="width: 100%; height: 90%; touch-action: pan-y;">
-<ul class="slides" style="height: 400px;">
+<div class="slider" style="width: 100%; height: 90%;">
+<ul class="slides" style="height: 760px;  padding:0%;">
 <li class="active" style="opacity: 1; transform: translateX(0px) translateY(0px);">
 <img style="background-image: url(http://www.imageneswiki.com/Uploads/imageneswiki.com/ImagenesGrandes/canguro-playa.jpg); "> <!-- random image -->
 <div class="caption center-align" style="opacity: 1; transform: translateY(0px) translateX(0px);">
@@ -19,8 +15,4 @@
 </div>
 </li>
 </ul>
-<ul class="indicators"><li class="indicator-item active"></li><li class="indicator-item"></li><li class="indicator-item"></li><li class="indicator-item"></li></ul></div><br>
-<br><br>
-</div>
-</div>
 </div>

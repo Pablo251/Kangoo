@@ -14,9 +14,9 @@
 <a class="btn-floating btn-large blue lighten-3">OPTIONS</a>
 </a>
 <ul>
-<li><a class="btn-floating blue lighten-1"><i class="material-icons"><h6>SEND</h6></i></a></li>
-<li><a class="btn-floating blue lighten-2"><i class="material-icons"><h6>OUTPUT</h6></i></a></li>
-<li><a class="btn-floating blue lighten-3"><i class="material-icons"><h6>CREATE</h6></i></a></li>
+<li><a id="exsent"class="btn-floating blue lighten-1"><i class="material-icons"><h6>SEND</h6></i></a></li>
+<li><a id="exoutput"class="btn-floating blue lighten-2"><i class="material-icons"><h6>OUTPUT</h6></i></a></li>
+<li><a id="excreate"class="btn-floating blue lighten-3"><i class="material-icons"><h6>CREATE</h6></i></a></li>
 </ul>
 </div>
 </div>
@@ -85,3 +85,4 @@
 <li class="waves-effect"><a href="#!"><i class="material-icons"></i></a></li>
 </ul>
 </div>
+{{ javascript_include('js/dash.js')}}
