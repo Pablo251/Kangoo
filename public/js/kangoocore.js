@@ -105,6 +105,8 @@ var KANGOO = KANGOO || {
       '<td>' + objPost.mails[i].username + '</td>'+
       '<td>' + objPost.mails[i].email + '</td>'+
       '<td>' + objPost.mails[i].id_user + '</td>'+
+      '<td><input onclick="KANGOO.deleteMail(this.value);"name="deletebutton" value="'+objPost.mails[i].id_user+
+      '" type="image" src="/kangoo/public/img/delete.png" alt="button"></td>'+
       '</tr>' );
     };
     localStorage.setItem("finalLoop", objPost.finalLoop);
@@ -116,7 +118,7 @@ var KANGOO = KANGOO || {
   */
   callStack: function(indexTo){
     $.ajax({
-    data:  {"sentstack" : indexTo },
+    data:  {"sentstack" : indexTo, "findby": "Pablo"  },
     url:   '/kangoo/dashboard/outputCharger',
     type:  'post',
     beforeSend: function () {
@@ -129,8 +131,9 @@ var KANGOO = KANGOO || {
   },
 
   /*InitDash load...*/
-  initDash: function(){
-      /*Ajax GET: count of the mails in the stack*/
+  initDash: function(target){
+  /*Ajax GET: count of the mails in the stack*/
+  console.log("Is");
   $.ajax({
     url: "/kangoo/dashboard/getMailStack"
   }).done(function(data)
@@ -140,7 +143,7 @@ var KANGOO = KANGOO || {
   });
   /*Ajax post: Sent the mailStack number and response with new mails stack*/
     $.ajax({
-    data:  {"sentstack" : localStorage.localStack},
+    data:  {"sentstack" : localStorage.localStack, "findby": target},
     url:   '/kangoo/dashboard/outputCharger',
     type:  'post',
     beforeSend: function () {
@@ -151,6 +154,33 @@ var KANGOO = KANGOO || {
     }
   });
   },
+
+  /**
+  * Delete an especific mail
+  */
+  deleteMail: function(pressed) {
+    console.log(pressed);
+    $.ajax({
+    data:  {"id_mail" : parseInt(pressed)},
+    url:   '/kangoo/dashboard/deleteMail',
+    type:  'post',
+    beforeSend: function () {
+      console.log("Deleting mail...");
+    },
+    success:  function (response) {
+      console.log(response);
+      // if (response=="succes") {
+      //  KANGOO.callStack(localStorage.initialLoop);
+      // }else{
+      //   alert("Upps! That mail can not deleted... :( ");
+      // }
+    }
+  });
+  },
+
+  /**
+  *
+  */
   sayHello: function (){
     alert("Hello");
   },
