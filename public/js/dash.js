@@ -32,8 +32,14 @@ $(document).ready(function(){
     KANGOO.callStack(localStorage.finalLoop);
   });
   /*Click event for the back button*/
-  $("#back").click(function() {
-    KANGOO.callStack((objPost.initialLoop + objPost.diference));
+  $("#back").click(function() {parseInt(localStorage.initialLoop)
+    var sum = parseInt(localStorage.initialLoop)+parseInt(localStorage.diference);
+    console.log(sum);
+    if (sum>parseInt(localStorage.localStack)) {
+      return;
+    }
+    console.log(parseInt(localStorage.initialLoop)+parseInt(localStorage.diference));
+    KANGOO.callStack(sum);
   });
   /*----------------------------------------------------------------------edge*/
 });
