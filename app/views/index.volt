@@ -9,6 +9,9 @@
   <meta name="description" content="Kangoo as a WebMail manager">
   <meta name="author" content="Susana Corrales & Pablo Arce Cascante">
   {{ get_title()}}
+  {{ javascript_include('js/jquery-2.1.4.min.js')}}
+  {{ javascript_include('js/kangoocore.js')}}
+  {{ javascript_include('js/boot.js')}}
 </head>
 <body>
   {{ content() }}
@@ -31,7 +34,6 @@
       </div>
     </div>
   </footer>
-  {{ javascript_include('js/jquery-2.1.4.min.js')}}
   <!-- {{ javascript_include('js/boot.js')}} -->
   {{ javascript_include('js/materialize.min.js') }}
 </body>

@@ -9,6 +9,9 @@
   <meta name="description" content="Kangoo as a WebMail manager">
   <meta name="author" content="Susana Corrales & Pablo Arce Cascante">
   <?php echo $this->tag->getTitle(); ?>
+  <?php echo $this->tag->javascriptInclude('js/jquery-2.1.4.min.js'); ?>
+  <?php echo $this->tag->javascriptInclude('js/kangoocore.js'); ?>
+  <?php echo $this->tag->javascriptInclude('js/boot.js'); ?>
 </head>
 <body>
   <?php echo $this->getContent(); ?>
@@ -31,7 +34,10 @@
       </div>
     </div>
   </footer>
+<<<<<<< HEAD
   <?php echo $this->tag->javascriptInclude('js/jquery-2.1.4.min.js'); ?>
+=======
+>>>>>>> refs/remotes/origin/master
   <!-- <?php echo $this->tag->javascriptInclude('js/boot.js'); ?> -->
   <?php echo $this->tag->javascriptInclude('js/materialize.min.js'); ?>
 </body>
