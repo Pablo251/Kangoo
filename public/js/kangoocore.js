@@ -127,6 +127,30 @@ var KANGOO = KANGOO || {
     }
   });
   },
+
+  /*InitDash load...*/
+  initDash: function(){
+      /*Ajax GET: count of the mails in the stack*/
+  $.ajax({
+    url: "/kangoo/dashboard/getMailStack"
+  }).done(function(data)
+  {
+    /*Set the data into the localStorage*/
+    localStorage.setItem("localStack",data);
+  });
+  /*Ajax post: Sent the mailStack number and response with new mails stack*/
+    $.ajax({
+    data:  {"sentstack" : localStorage.localStack},
+    url:   '/kangoo/dashboard/outputCharger',
+    type:  'post',
+    beforeSend: function () {
+      console.log("Processing post mails count and get new stack");
+    },
+    success:  function (response) {
+      KANGOO.appendSentRows(response);
+    }
+  });
+  },
   sayHello: function (){
     alert("Hello");
   },
