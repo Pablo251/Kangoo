@@ -2,29 +2,38 @@
 * Dash execute JavaScript primary functions for the dashboard view.
 * Manage actions like fill a table with a new stack with mails through Ajax Post
 */
-$(document).ready(function() {
-  //Init
-  //   url: "/kangoo/dashboard/getMailStack"
-  // }).done(function(data)
-  // var mailStack = 0;
-  // /*Ajax GET: count of the mails in the stack*/
-  // $.ajax({
-  // {
-  //   mailStack = data;
-  // });
-  // $("#exsent").click(function() {
-  //   KANGOO.outputAjaxPOST(2, 6);
-  // });
-  // Ajax Post: Make a post with the correct stack quantity
-  //   $.ajax({
-  //   data:  {"stack" : mailStack},
-  //   url:   '/kangoo/dashboard/outputCharger',
-  //   type:  'post',
-  //   beforeSend: function () {
-  //     console.log("Processing Stack Post...");
-  //   },
-  //   success:  function (response) {
-  //     console.log(response);
-  //   }
-  // });
+$(document).ready(function(){
+  /*Ajax GET: count of the mails in the stack*/
+  $.ajax({
+    url: "/kangoo/dashboard/getMailStack"
+  }).done(function(data)
+  {
+    /*Set the data into the localStorage*/
+    localStorage.setItem("localStack",data);
+  });
+  /*Ajax post: Sent the mailStack number and response with new mails stack*/
+    $.ajax({
+    data:  {"sentstack" : localStorage.localStack},
+    url:   '/kangoo/dashboard/outputCharger',
+    type:  'post',
+    beforeSend: function () {
+      console.log("Processing post mails count and get new stack");
+    },
+    success:  function (response) {
+      KANGOO.appendSentRows(response);
+    }
+  });
+  /*Click event for sent mails button*/
+  $("#exsent").click(function() {
+    KANGOO.outputAjaxPOST(2, 6);
+  });
+  /*Click event for next button*/
+  $("#next").click(function() {
+    KANGOO.callStack(localStorage.finalLoop);
+  });
+  /*Click event for the back button*/
+  $("#back").click(function() {
+    KANGOO.callStack((objPost.initialLoop + objPost.diference));
+  });
+  /*----------------------------------------------------------------------edge*/
 });
