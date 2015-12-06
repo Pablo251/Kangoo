@@ -30,6 +30,19 @@ class Acl extends Component
        'output'
      )
   );
+
+  /**
+  * If exist a session (User Logged) this disabled a signup and login before close
+  * the existent user session
+  */
+  private $closedResources = array(
+    'session' => array(
+      'index',
+      'login',
+      'signup'
+     )
+  );
+
   /**
   * Allow accees to the acl
   */
@@ -39,11 +52,23 @@ class Acl extends Component
 
   /**
   * Determines if a sent controllers is private or not, finding the key.
-  * @param 1: controller name
+  * @param COntrollerName Object: controller name
   * @return boolean {true, if is private: false if not}
   */
   public function isPrivate($controllerName){
     $controllerName = strtolower($controllerName);
     return array_key_exists($controllerName, $this->privateResources);
+  }
+
+  /**
+  * Detect if the current action is actually closed
+  */
+  public function isClosed($controllerName, $actionName){
+    $controllerName = strtolower($controllerName);
+    $actionName     = strtolower($actionName);
+    if (array_key_exists($controllerName, $this->closedResources)) {
+        return in_array($actionName, $this->closedResources[$controllerName]);
+    }
+    return false;
   }
 }

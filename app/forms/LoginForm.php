@@ -1,6 +1,7 @@
 <?php
 use Phalcon\Forms\Form;
 use Phalcon\Forms\Element\Text;
+use Phalcon\Forms\Element\Check;
 use Phalcon\Forms\Element\Password;
 use Phalcon\Forms\Element\Submit;
 use Phalcon\Validation\Validator\PresenceOf;
@@ -39,8 +40,16 @@ class LoginForm extends Form
 
     $this->add($password);
 
+    // Remember
+    $remember = new Check('remember', array(
+        'value' => 'false'
+    ));
+    $remember->setLabel('Remember me');
+    $this->add($remember);
+
     $this->add(new Submit('Continue', array(
-      'class' => 'btn btn-success'
+      'class' => 'btn btn-success',
+      'id' => 'submitbtn'
       )));
   }
   /**
