@@ -57,6 +57,8 @@ class DashboardController extends ControllerBase
     if ($this->request->isPost() && $this->request->isAjax()) {
       //take the info posted: Mails Count
       $stackCount = $this->request->getPost('sentstack');
+      //take the target to find
+      $findBy = $this->request->getPost('findby');
       //Create my response JSON_array
       $JSON = array();
       //Temporal array
@@ -69,8 +71,8 @@ class DashboardController extends ControllerBase
       $lapsCounter = 0;
       //It's the final mails... Turururuuu... turututu..
       for ($i=$stackCount; $i >= 0; $i--) {
-        //Was sent?
-        if ($allmails[$loopCounter]->username=="Pablo") {
+        //Was sent and are active
+        if ($allmails[$loopCounter]->username==$findBy&&$allmails[$loopCounter]->active==1) {
           $mytemp = $allmails[$loopCounter];
           array_push($JSON, $mytemp);
           //Ask if exist 10 mails in the stack
@@ -110,6 +112,32 @@ class DashboardController extends ControllerBase
       }else{
         $this->response->setStatusCode(404, "Not Found");
       }
+    }
+  }
+
+  /**
+  * Delete a selected mail
+  */
+  public function deleteMailAction(){
+    //Disable the view
+    $this->view->disable();
+    if ($this->request->isPost()&&$this->request->isAjax()) {
+      //Get the info
+      $mailTarget = $this->request->getPost('id_mail');
+      //Find the correct email
+        $selectEmail = User::findFirst("id_user = $mailTarget");
+      //Inactive that mail
+        //$selectEmail->active = 0;
+        //$selectEmail->state = "deleted";
+      //Try to save the new changes
+      // if ($selectEmail->save()) {
+      //   $this->response->setJsonContent("success");
+      // }else{
+      //   $this->response->setJsonContent("fail");
+      // }
+      $this->response->setJsonContent(array("res"=>$selectEmail));
+      $this->response->setStatusCode(200, "OK");
+      $this->response->send();
     }
   }
 //------------------------------------------------------------------------Edge--

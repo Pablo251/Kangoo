@@ -4,7 +4,7 @@
 */
 $(document).ready(function(){
   /*Init*/
-  KANGOO.initDash();
+  KANGOO.initDash('Pablo');
   /*Click event for sent mails button*/
   $("#exsent").click(function() {
     KANGOO.outputAjaxPOST(2, 6);

@@ -27,12 +27,14 @@
 <tr>
 <th data-field="id">Select</th>
 <th data-field="name">Content</th>
-<th data-field="price">Date and Time</th>
+<th data-field="date">Date and Time</th>
+<th data-field="option">Option</th>
 </tr>
 </thead>
 
 <tbody id="tableBody">
 <tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
