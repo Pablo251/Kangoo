@@ -32,7 +32,7 @@ class ControllerBase extends Controller
     }
     if ($this->acl->isPrivate($controllerName)) {
       if (!is_null($this->auth->getAccess())) {
-        echo "Logeado";
+        //echo "Logeado";
       }
       else {
         //Display a error by a flash component

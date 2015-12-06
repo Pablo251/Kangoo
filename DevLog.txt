@@ -142,6 +142,24 @@ $2a$08$RPMOUzM8kZGSCNMPlflsNOz/l6gL4XWgr6PM0TA/kZ/qeX64svDNy
 				Post Can't filtered.
 				User can't accest to that action
 
+	Dashboard
+		set a sent mail stack.. the first 10 sent mails.
+			-Select all the mails... Mail::find();  put into a variable*
+			-Count all the mails to get the lastests registres... count()					
+			-throught a foreach  in "wrong way", "Backward", whatever!
+			- if... (variable[cantidadTotal -1]) pregunta si ese es un 
+			enviado
+				-YES 
+					mytemp is equal to that mail
+					make a array_push(JSON, mytemp)
+			Exit
+			- if... (Count(JSON)==10)
+				exit
+			 decrement in one numer cantidadTotal...
+			-continue the foreach
+
+		
+
 					    
 
 	
