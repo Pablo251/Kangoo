@@ -92,6 +92,41 @@ var KANGOO = KANGOO || {
     }
   });
   },
+
+  /**
+  * Draw a new sent rows...
+  * @param POST responce
+  */
+  appendSentRows: function(post){
+    var objPost = jQuery.parseJSON(post);
+    $("#tableBody tr").remove();
+    for (var i = 0; i < objPost.mails.length; i++) {
+      $('#tableBody').append( '<tr value="objPost.mails[i].id_user"">'+
+      '<td>' + objPost.mails[i].username + '</td>'+
+      '<td>' + objPost.mails[i].email + '</td>'+
+      '<td>' + objPost.mails[i].id_user + '</td>'+
+      '</tr>' );
+    };
+    localStorage.setItem("finalLoop", objPost.finalLoop);
+    localStorage.setItem("initialLoop", objPost.initialLoop);
+    localStorage.setItem("diference", objPost.diference);
+  },
+  /**
+  * Call the next 10 mail
+  */
+  callStack: function(indexTo){
+    $.ajax({
+    data:  {"sentstack" : indexTo },
+    url:   '/kangoo/dashboard/outputCharger',
+    type:  'post',
+    beforeSend: function () {
+      console.log("Processing post mails count and get new stack");
+    },
+    success:  function (response) {
+      KANGOO.appendSentRows(response);
+    }
+  });
+  },
   sayHello: function (){
     alert("Hello");
   },

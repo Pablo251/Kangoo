@@ -31,17 +31,7 @@
 </tr>
 </thead>
 
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
+<tbody id="tableBody">
 <tr>
 <td></td>
 <td></td>
@@ -77,8 +67,8 @@
 <div>
 <ul class="pagination center" >
 <li class="waves-effect"><a href="#!"><i class="material-icons"></i></a></li>
-<li class="waves-effect"><a href="#!">1</a></li>
-<li class="waves-effect"><a href="#!">2</a></li>
+<li class="waves-effect"><button type="button" name="button" id="back">Back</button></li>
+<li class="waves-effect"><button type="button" name="button" id="next">Next</button></li>
 <li class="waves-effect"><a href="#!">3</a></li>
 <li class="waves-effect"><a href="#!">4</a></li>
 <li class="waves-effect"><a href="#!">5</a></li>

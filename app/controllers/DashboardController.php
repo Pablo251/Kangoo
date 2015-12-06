@@ -56,30 +56,37 @@ class DashboardController extends ControllerBase
     //Post?
     if ($this->request->isPost() && $this->request->isAjax()) {
       //take the info posted: Mails Count
-      $stackCount = $this->request->getPost('stack');
+      $stackCount = $this->request->getPost('sentstack');
       //Create my response JSON_array
       $JSON = array();
       //Temporal array
       $mytemp = array();
       //Execute a select
-      $allmails = Mail::find();
+      $allmails = User::find();
       //Set my loop counter
       $loopCounter = --$stackCount;
+      //count the laps
+      $lapsCounter = 0;
       //It's the final mails... Turururuuu... turututu..
       for ($i=$stackCount; $i >= 0; $i--) {
         //Was sent?
-        if ($allmails[$loopCounter]->state=="sent") {
+        if ($allmails[$loopCounter]->username=="Pablo") {
           $mytemp = $allmails[$loopCounter];
           array_push($JSON, $mytemp);
           //Ask if exist 10 mails in the stack
-          if(count($JSON)==10){
+          if(count($JSON)==5){
             break;
           }
         }
         --$loopCounter;
+        ++$lapsCounter;
       }
     //Run and Push a custom response
-    $this->response->setJsonContent(array('mails'=>$JSON, 'finalLoop'=>++$loopCounter));
+    $this->response->setJsonContent(array(
+     'mails'=>$JSON,
+     'finalLoop'=>++$loopCounter,
+     'initialLoop'=>$this->request->getPost('sentstack'),
+     'diference'=>$lapsCounter));
     $this->response->setStatusCode(200, "OK");
     $this->response->send();
     }
@@ -96,7 +103,7 @@ class DashboardController extends ControllerBase
     if ($this->request->isGet()) {
       if ($this->request->isAjax()) {
         //Execute querys
-        $allmails = Mail::find();
+        $allmails = User::find();
         $this->response->setJsonContent(count($allmails));
         $this->response->setStatusCode(200, "OK");
         $this->response->send();
