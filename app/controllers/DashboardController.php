@@ -11,4 +11,7 @@ class DashboardController extends ControllerBase
   public function indexAction(){
     //echo "<h1>Hello " . $this->session->get('authenticated')['username'].".... App is under development :P</h1>" ;
   }
+   public function newAction(){
+
+  }
 }
