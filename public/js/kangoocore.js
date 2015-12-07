@@ -276,12 +276,15 @@ console.log("Se levantó el view");
     }
   });
     //Dedelete the current tags
-
   },
 
   /**
-  *
+  * This set temporal state in the email table. The reason is: The Cronejob
+  * couldn't access to that state and sent that mail.
   */
+  switchState: function(){
+
+  },
 
   /**
   *
