@@ -11,7 +11,6 @@ class DashboardController extends ControllerBase
   public function initialize(){
     parent::initialize();
   }
-
   /**
   * This load a mailbox view...
   */
@@ -93,7 +92,6 @@ class DashboardController extends ControllerBase
     $this->response->send();
     }
   }
-
   /**
   * Ajax Get petition. Get the count of the all mails in the db
   * @return ajax:get JSON: Count of the mail stack
@@ -114,7 +112,6 @@ class DashboardController extends ControllerBase
       }
     }
   }
-
   /**
   * Delete a selected mail
   */
@@ -139,7 +136,6 @@ class DashboardController extends ControllerBase
       $this->response->send();
     }
   }
-
   /**
   * Get the mail
   */

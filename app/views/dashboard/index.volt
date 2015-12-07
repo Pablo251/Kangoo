@@ -65,6 +65,8 @@
 </br>
 </br>
 </br>
+<div>
+</div>
 </div>
 <!-- Modal Trigger -->
 <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a>
