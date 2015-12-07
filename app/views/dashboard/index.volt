@@ -25,7 +25,7 @@
 <table  class="highlight centered striped">
 <thead>
 <tr>
-<th data-field="id">Select</th>
+<th data-field="id">$log;</th>
 <th data-field="name">Content</th>
 <th data-field="price">Date and Time</th>
 </tr>
@@ -73,6 +73,8 @@
 </br>
 </br>
 </br>
+<div>
+</div>
 </div>
 <div>
 <ul class="pagination center" >
