@@ -22,18 +22,18 @@ class DashboardController extends ControllerBase
     $form = new NewMailForm();
     if ($this->request->isPost()) {
       if ($form->isValid($this->request->getPost()) != false) {
-        $mail = new User();
+        $mail = new Mail();
         $mail->assign(array(
           'fk_user' => $this->session->get('authenticated')['id'],
           'state' => 'pending',
           'subject' => $this->request->getPost('subject'),
           'content' => $this->request->getPost('content'),
-          'date' => date("d-m-Y", time()),
-          'active' => 0
+          'date' => date(DATE_ATOM, mktime(0, 0, 0, 7, 1, 2000)),
+          'active' => 1
         ));
         if ($mail->save()) {
           return $this->dispatcher->forward(array(
-            'controller' => 'index',
+            'controller' => 'dashboard',
             'action' => 'index'
           ));
         }else{

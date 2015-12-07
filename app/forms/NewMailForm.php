@@ -20,20 +20,22 @@ class NewMailForm extends Form
   public function initialize($entity = null, $options = null)
   {
     // Subject, added a placeholder and content
-    $subject = new Text('subject', array(
-      'placeholder' => 'Type your subject'
+    $subject = new Textarea('subject', array(
+      'placeholder' => 'Type your subject',
+      'style' => 'margin: 0px; height: 287px;'
       ));
-    $subject->setLabel('subject');
+    $this->add($subject);
     $subject->addValidators(array(
       new PresenceOf(array(
         'message' => 'The subject is required'
         ))
       ));
 
-    $adress = new Text('adress', array(
-      'placeholder' => 'Type your adress'
+    $adress = new Textarea('adress', array(
+      'placeholder' => 'Type your adress',
+      'style' => 'margin: 0px; height: 30%;'
       ));
-    $adress->setLabel('adress');
+    $this->add($adress);
     $adress->addValidators(array(
       new PresenceOf(array(
         'message' => 'The adress is required'
@@ -42,14 +44,14 @@ class NewMailForm extends Form
 
 // Content, added a placeholder and content
     $content = new Textarea('content', array(
-      'placeholder' => 'Type your content'
+      'placeholder' => 'Type your content',
+      'style' => 'margin: 0px; height: 452px;'
       ));
-    $content->setLabel('content');
-
-    $this->add($subject);
+    $this->add($content);
     // Button
-    $this->add(new Submit('Create Mail', array(
-      'class' => 'btn btn-success'
+    $this->add(new Submit('Send', array(
+      'class' => 'btn btn-success  blue lighten-3 btn',
+      'style' => 'margin: 1%; margin-left: 38%;'
       )));
   }
 

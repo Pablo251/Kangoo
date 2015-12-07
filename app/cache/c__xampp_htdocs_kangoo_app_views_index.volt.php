@@ -34,10 +34,6 @@
       </div>
     </div>
   </footer>
-<<<<<<< HEAD
-  <?php echo $this->tag->javascriptInclude('js/jquery-2.1.4.min.js'); ?>
-=======
->>>>>>> refs/remotes/origin/master
   <!-- <?php echo $this->tag->javascriptInclude('js/boot.js'); ?> -->
   <?php echo $this->tag->javascriptInclude('js/materialize.min.js'); ?>
 </body>

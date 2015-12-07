@@ -9,29 +9,40 @@
 </div>
 </nav>
 <div class="row">
+{{ form('class': 'form-search') }}</br>
 <div class="col s12 col m4">
 <p>ADRESS</p>
 <div class= "card-panel  blue lighten-4" style="width:2%  height:90%">
-<textarea style="margin: 0px; height: 40%;">
-</textarea>
+<!--Adress-->
+{{ form.render('adress') }}</br>
+{{ form.messages('adress') }}</br>
+<!--<textarea style="margin: 0px; height: 40%;">-->
+<!--</textarea>-->
 </div>
 <p>SUBJET</p>
 <div class= "card-panel  blue lighten-4" style="width:100%  height:90%">
-<textarea style="margin: 0px; height:  344px;">
-</textarea>
+<!--Subject-->
+{{ form.render('subject') }}</br>
+{{ form.messages('subject') }}</br>
+<!--<textarea style="margin: 0px; height:  344px;">-->
+<!--</textarea>-->
 </div>
 </div>
 <div class="row">
 <div class="col s8 col m8">
 <p>CONTENT</p>
 <div class= "card-panel  blue lighten-4" style="width:100%  height:90%">
-<textarea style="margin: 0px; height: 492px;">
-</textarea>
+<!--Content-->
+{{ form.render('content') }}</br>
+{{ form.messages('content') }}</br>
+<!--<textarea style="margin: 0px; height: 492px;">-->
+<!--</textarea>-->
 </div>
 </div>
 <div class= "style="width:100%  height:90%">
-<a class="waves-effect blue lighten-3 btn"style="margin: 1%; margin-left: 38%;">SEND</a>
-<a class="waves-effect blue lighten-3 btn">Cancel</a>
+{{ form.render('Send') }}
+<a class="waves-effect blue lighten-3 btn" href="/kangoo/dashboard">Cancel</a>
 </div>
+</form>
 </div>
 </div>
