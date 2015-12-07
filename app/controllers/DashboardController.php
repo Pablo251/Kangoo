@@ -17,7 +17,8 @@ class DashboardController extends ControllerBase
   public function indexAction(){
     //echo "<h1>Hello " . $this->session->get('authenticated')['id'].".... App is under development :P</h1>" ;
   }
-   public function newAction(){
+// create a new mail
+  public function newAction(){
     $form = new NewMailForm();
     if ($this->request->isPost()) {
       if ($form->isValid($this->request->getPost()) != false) {
@@ -27,22 +28,38 @@ class DashboardController extends ControllerBase
           'state' => 'pending',
           'subject' => $this->request->getPost('subject'),
           'content' => $this->request->getPost('content'),
-          'date' => date(DATE_ATOM, mktime(0, 0, 0, 7, 1, 2000)),
+          'date' => date('d-m-Y'),
           'active' => 1
-        ));
-        if ($mail->save()) {
-          return $this->dispatcher->forward(array(
-            'controller' => 'dashboard',
-            'action' => 'index'
           ));
-        }else{
-          echo "<h5>Upps! Data couldn't be saved :(... Try again...</h5>";
+        if ($mail->save()) {
+          $num = $mail->id_mail;
+          $str = $this->request->getPost('adress');
+          $adresses = explode(",",$str);
+          for ($i=0; $i < count($adresses);$i++) {
+           $adresse = new Adressee();
+           if (filter_var($adresses[$i], FILTER_VALIDATE_EMAIL)) {
+            $adresse->assign(array(
+              'adresse' => $adresses[$i],
+              'id_mail' => $num,
+              'active' => 1
+              ));
+            if ($adresse->save()) {
+            }
+          }else {echo"<script>alert('La dirección de correo:  ($adresses[$i]) es incorrecta por lo cual no se agregara a los destinatarios del email que desea enviar, solo los correctos.')</script>";
         }
-        $this->flash->error($mail->getMessages());
       }
+      return $this->dispatcher->forward(array(
+        'controller' => 'dashboard',
+        'action' => 'index'));
+
+    }else{
+      echo "<h5>Upps! Data couldn't be saved :(... Try again...</h5>";
     }
-    $this->view->form = $form;
+    $this->flash->error($mail->getMessages());
   }
+}
+$this->view->form = $form;
+}
   /**
   * Account confirmation through the previous sent mail.
   */
