@@ -16,9 +16,37 @@ class DashboardController extends ControllerBase
   * This load a mailbox view...
   */
   public function indexAction(){
-    //echo "<h1>Hello " . $this->session->get('authenticated')['username'].".... App is under development :P</h1>" ;
+    //echo "<h1>Hello " . $this->session->get('authenticated')['id'].".... App is under development :P</h1>" ;
   }
-
+   public function newAction(){
+    $form = new NewMailForm();
+    if ($this->request->isPost()) {
+      if ($form->isValid($this->request->getPost()) != false) {
+        $mail = new Mail();
+        $mail->assign(array(
+          'fk_user' => $this->session->get('authenticated')['id'],
+          'state' => 'pending',
+          'subject' => $this->request->getPost('subject'),
+          'content' => $this->request->getPost('content'),
+          'date' => date(DATE_ATOM, mktime(0, 0, 0, 7, 1, 2000)),
+          'active' => 1
+        ));
+        if ($mail->save()) {
+          return $this->dispatcher->forward(array(
+            'controller' => 'dashboard',
+            'action' => 'index'
+          ));
+        }else{
+          echo "<h5>Upps! Data couldn't be saved :(... Try again...</h5>";
+        }
+        $this->flash->error($mail->getMessages());
+      }
+    }
+    $this->view->form = $form;
+  }
+  /**
+  * Account confirmation through the previous sent mail.
+  */
   /**
   * This take a 10 mails in the output gate.
   */
@@ -79,3 +107,4 @@ class DashboardController extends ControllerBase
   }
 //------------------------------------------------------------------------Edge--
 }
+
