@@ -48,6 +48,7 @@ class NewMailForm extends Form
       'style' => 'margin: 0px; height: 452px;'
       ));
     $this->add($content);
+
     // Button
     $this->add(new Submit('Send', array(
       'class' => 'btn btn-success  blue lighten-3 btn',
