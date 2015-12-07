@@ -102,16 +102,24 @@ var KANGOO = KANGOO || {
     $("#tableBody tr").remove();
     //Validate the 5 records to return back
     if (objPost.mails.length==5 || herFlag==false) {
-    console.log("es ta es ka cantidad de loops a pintat "+objPost.mails.length);
+
     for (var i = 0; i < objPost.mails.length; i++) {
+      if (localStorage.gate == "sent") {
+        $('#tableBody').append( '<tr value="objPost.mails[i].id_mail"">'+
+      '<td><input onclick="KANGOO.showMailInfo(this.value);"name="viewbutton" value="'+objPost.mails[i].id_mail+
+      '" type="image" src="/kangoo/public/img/mail.png" alt="button"></td>'+
+      '<td>' + objPost.mails[i].subject + '</td>'+
+      '<td>' + objPost.mails[i].date+'<td><input onclick="KANGOO.deleteMail(this.value);"name="deletebutton" value="'+objPost.mails[i].id_mail+
+      '" type="image" src="/kangoo/public/img/delete.png" alt="button"></td></tr>');
+      }else{
       $('#tableBody').append( '<tr value="objPost.mails[i].id_mail"">'+
       '<td><input onclick="KANGOO.showMailInfo(this.value);"name="viewbutton" value="'+objPost.mails[i].id_mail+
       '" type="image" src="/kangoo/public/img/mail.png" alt="button"></td>'+
       '<td>' + objPost.mails[i].subject + '</td>'+
-      '<td>' + objPost.mails[i].date + '</td>'+
-      '<td><input onclick="KANGOO.deleteMail(this.value);"name="deletebutton" value="'+objPost.mails[i].id_mail+
-      '" type="image" src="/kangoo/public/img/delete.png" alt="button"></td>'+
-      '</tr>' );
+      '<td>' + objPost.mails[i].date+'<td><input onclick="KANGOO.deleteMail(this.value);"name="deletebutton" value="'+objPost.mails[i].id_mail+
+      '" type="image" src="/kangoo/public/img/delete.png" alt="button"><input onclick="KANGOO.editMailInfo(this.value);"name="editbutton" value="'+objPost.mails[i].id_mail+
+      '" type="image" src="/kangoo/public/img/edit.png" alt="button"></td></tr>');
+      }
     }
     }
     localStorage.setItem("finalLoop", objPost.finalLoop);
@@ -132,7 +140,7 @@ var KANGOO = KANGOO || {
   */
   callStack: function(indexTo){
     $.ajax({
-    data:  {"sentstack" : indexTo, "findby": "sent"  },
+    data:  {"sentstack" : indexTo, "findby": localStorage.gate  },
     url:   '/kangoo/dashboard/outputCharger',
     type:  'post',
     beforeSend: function () {
@@ -148,7 +156,7 @@ var KANGOO = KANGOO || {
   */
   callStackBack: function(indexTo){
     $.ajax({
-    data:  {"sentstack" : indexTo, "findby": "sent"  },
+    data:  {"sentstack" : indexTo, "findby": localStorage.gate  },
     url:   '/kangoo/dashboard/outputCharger',
     type:  'post',
     beforeSend: function () {
@@ -215,7 +223,8 @@ var KANGOO = KANGOO || {
   * Show a mail content
   */
   showMailInfo: function(idMail){
-    $('#modal1').openModal()
+console.log("Se levantó el view");
+   $('#modal1').openModal();
     //Dedelete the current tags
     $("#modelCard h4").remove();
     $("#modelCard p").remove();
@@ -230,12 +239,49 @@ var KANGOO = KANGOO || {
     success:  function (response) {
       var mymailjson = jQuery.parseJSON(response);
       $('#modelCard').append("<h4>"+mymailjson.subject+"</h4><label>Date and hour: "+
-        mymailjson.date+"</label>");
+      mymailjson.date+"</label>");
       $('#modelCard').append("<p>"+mymailjson.content+"</p>");
       console.log(mymailjson.state);
     }
   });
   },
+  /**
+  *
+  */
+  /**
+  * Show a selected mail content to edit
+  */
+  editMailInfo: function(idMail){
+    console.log("Se levantó el edit");
+     $('#modal2').openModal({
+      complete: function(){ console.log("Cierre!");}
+    });
+
+    $("#modelCardEdit input").remove();
+    $("#modelCardEdit textarea").remove();
+    $("#modelCardEdit label").remove();
+    $.ajax({
+    data:  {"id_mail" : parseInt(idMail)},
+    url:   '/kangoo/dashboard/getEmail',
+    type:  'post',
+    beforeSend: function () {
+      console.log("Show mail...");
+    },
+    success:  function (response) {
+      var mymailjson = jQuery.parseJSON(response);
+      $('#modelCardEdit').append("<label>Subject: </label><input type='text' id='mailSubject' value='"+mymailjson.subject+"'>"+
+        "<label>"+mymailjson.date+"</label>");
+      $('#modelCardEdit').append("<textarea>"+mymailjson.content+"</textarea>");
+      console.log(mymailjson.state);
+    }
+  });
+    //Dedelete the current tags
+
+  },
+
+  /**
+  *
+  */
 
   /**
   *

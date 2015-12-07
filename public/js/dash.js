@@ -4,11 +4,19 @@
 */
 $(document).ready(function(){
   /*Init*/
+  localStorage.gate = "sent";
   KANGOO.initDash('sent');
   /*Click event for sent mails button*/
   $("#exsent").click(function() {
+    localStorage.gate = "sent";
     console.log("Sent Init pressed");
     KANGOO.initDash('sent');
+  });
+  //Click event for exout
+  $("#exoutput").click(function() {
+    localStorage.gate = "output";
+    console.log("Output Init pressed");
+    KANGOO.initDash('output');
   });
   /*Click event for next button*/
   $("#next").click(function() {

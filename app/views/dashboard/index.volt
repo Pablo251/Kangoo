@@ -66,21 +66,34 @@
 </br>
 </br>
 </div>
-  <button data-target="modal1" class="btn modal-trigger">Modal</button>
-  <!-- Modal Trigger -->
- <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a>
+<!-- Modal Trigger -->
+<a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a>
 
- <!-- Modal Structure -->
- <div id="modal1" class="modal modal-fixed-footer">
-   <div class="modal-content" id="modelCard">
-     <h4></h4>
-     <p>
-     </p>
-   </div>
-   <div class="modal-footer">
-     <a href="" class="modal-action modal-close waves-effect waves-green btn-flat ">X</a>
-   </div>
- </div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+  <div class="modal-content" id="modelCard">
+    <h4></h4>
+    <p></p>
+    <label></label>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+  </div>
+</div>
+<!-- Modal Trigger2 -->
+<a class="modal-trigger waves-effect waves-light btn" href="#modal2">Modal</a>
+
+<!-- Modal Structure 2 -->
+<div id="modal2" class="modal modal-fixed-footer">
+  <div class="modal-content" id="modelCardEdit">
+    <h4></h4>
+    <p></p>
+    <label></label>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+  </div>
+</div>
 <div>
 <ul class="pagination center" >
 <li class="waves-effect"><a href="#!"><i class="material-icons"></i></a></li>

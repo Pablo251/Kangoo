@@ -1,11 +1,6 @@
 <?php echo $this->getContent(); ?>
-<<<<<<< HEAD
 <div class="slider" style="width: 100%; height: 100%;">
 <ul class="slides" style="height: 760px; padding:0%;">
-=======
-<div class="slider" style="width: 100%; height: 90%;">
-<ul class="slides" style="height: 760px;  padding:0%;">
->>>>>>> refs/remotes/origin/master
 <li class="active" style="opacity: 1; transform: translateX(0px) translateY(0px);">
 <img style="background-image: url(http://www.imageneswiki.com/Uploads/imageneswiki.com/ImagenesGrandes/canguro-playa.jpg); "> <!-- random image -->
 <div class="caption center-align" style="opacity: 1; transform: translateY(0px) translateX(0px);">
