@@ -282,8 +282,25 @@ console.log("Se levantó el view");
   * This set temporal state in the email table. The reason is: The Cronejob
   * couldn't access to that state and sent that mail.
   */
-  switchState: function(){
+  switchState: function(currentState){
+    if (currentState==true) {
 
+    }
+  //   $.ajax({
+  //   data:  {"id_mail" : parseInt(idMail)},
+  //   url:   '/kangoo/dashboard/getEmail',
+  //   type:  'post',
+  //   beforeSend: function () {
+  //     console.log("Show mail...");
+  //   },
+  //   success:  function (response) {
+  //     var mymailjson = jQuery.parseJSON(response);
+  //     $('#modelCardEdit').append("<label>Subject: </label><input type='text' id='mailSubject' value='"+mymailjson.subject+"'>"+
+  //       "<label>"+mymailjson.date+"</label>");
+  //     $('#modelCardEdit').append("<textarea>"+mymailjson.content+"</textarea>");
+  //     console.log(mymailjson.state);
+  //   }
+  // });
   },
 
   /**
