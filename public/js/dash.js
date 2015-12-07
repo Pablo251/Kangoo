@@ -7,7 +7,8 @@ $(document).ready(function(){
   KANGOO.initDash('Pablo');
   /*Click event for sent mails button*/
   $("#exsent").click(function() {
-    KANGOO.outputAjaxPOST(2, 6);
+    console.log("Sent Init pressed");
+    KANGOO.initDash('Pablo');
   });
   /*Click event for next button*/
   $("#next").click(function() {
