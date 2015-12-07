@@ -25,9 +25,9 @@
 <table  class="highlight centered striped">
 <thead>
 <tr>
-<th data-field="id">Select</th>
-<th data-field="name">Content</th>
-<th data-field="date">Date and Time</th>
+<th data-field="content">View Content</th>
+<th data-field="name">Subject</th>
+<th data-field="date">Date</th>
 <th data-field="option">Option</th>
 </tr>
 </thead>
@@ -66,6 +66,21 @@
 </br>
 </br>
 </div>
+  <button data-target="modal1" class="btn modal-trigger">Modal</button>
+  <!-- Modal Trigger -->
+ <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a>
+
+ <!-- Modal Structure -->
+ <div id="modal1" class="modal modal-fixed-footer">
+   <div class="modal-content" id="modelCard">
+     <h4></h4>
+     <p>
+     </p>
+   </div>
+   <div class="modal-footer">
+     <a href="" class="modal-action modal-close waves-effect waves-green btn-flat ">X</a>
+   </div>
+ </div>
 <div>
 <ul class="pagination center" >
 <li class="waves-effect"><a href="#!"><i class="material-icons"></i></a></li>

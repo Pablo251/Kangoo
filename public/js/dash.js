@@ -4,11 +4,11 @@
 */
 $(document).ready(function(){
   /*Init*/
-  KANGOO.initDash('Pablo');
+  KANGOO.initDash('sent');
   /*Click event for sent mails button*/
   $("#exsent").click(function() {
     console.log("Sent Init pressed");
-    KANGOO.initDash('Pablo');
+    KANGOO.initDash('sent');
   });
   /*Click event for next button*/
   $("#next").click(function() {
@@ -24,7 +24,7 @@ $(document).ready(function(){
       return;
     }
     console.log(parseInt(localStorage.initialLoop)+parseInt(localStorage.diference));
-    KANGOO.callStack(sum);
+    KANGOO.callStackBack(sum);
   });
   /*----------------------------------------------------------------------edge*/
 });

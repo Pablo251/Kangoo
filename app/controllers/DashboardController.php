@@ -64,7 +64,7 @@ class DashboardController extends ControllerBase
       //Temporal array
       $mytemp = array();
       //Execute a select
-      $allmails = User::find();
+      $allmails = Mail::find();
       //Set my loop counter
       $loopCounter = --$stackCount;
       //count the laps
@@ -72,7 +72,7 @@ class DashboardController extends ControllerBase
       //It's the final mails... Turururuuu... turututu..
       for ($i=$stackCount; $i >= 0; $i--) {
         //Was sent and are active
-        if ($allmails[$loopCounter]->username==$findBy&&$allmails[$loopCounter]->active==1) {
+        if ($allmails[$loopCounter]->state==$findBy&&$allmails[$loopCounter]->active==1) {
           $mytemp = $allmails[$loopCounter];
           array_push($JSON, $mytemp);
           //Ask if exist 10 mails in the stack
@@ -105,7 +105,7 @@ class DashboardController extends ControllerBase
     if ($this->request->isGet()) {
       if ($this->request->isAjax()) {
         //Execute querys
-        $allmails = User::find();
+        $allmails = Mail::find();
         $this->response->setJsonContent(count($allmails));
         $this->response->setStatusCode(200, "OK");
         $this->response->send();
@@ -125,21 +125,39 @@ class DashboardController extends ControllerBase
       //Get the info
       $mailTarget = $this->request->getPost('id_mail');
       //Find the correct email
-        $selectEmail = User::findFirst("id_user = $mailTarget");
+      $selectEmail = Mail::findFirst("id_mail = $mailTarget");
       //Inactive that mail
-        //$selectEmail->active = 0;
-        //$selectEmail->state = "deleted";
+      $selectEmail->active = 0;
+      $selectEmail->state = "deleted";
       //Try to save the new changes
-      // if ($selectEmail->save()) {
-      //   $this->response->setJsonContent("success");
-      // }else{
-      //   $this->response->setJsonContent("fail");
-      // }
-      $this->response->setJsonContent(array("res"=>$selectEmail));
+      if ($selectEmail->save()) {
+         $this->response->setJsonContent("success");
+      }else{
+         $this->response->setJsonContent("fail");
+      }
       $this->response->setStatusCode(200, "OK");
       $this->response->send();
     }
   }
+
+  /**
+  * Get the mail
+  */
+  public function getEmailAction(){
+    //Disable the view
+    $this->view->disable();
+    if ($this->request->isPost()) {
+      if ($this->request->isAjax()) {
+        $mailTarget = $this->request->getPost('id_mail');
+        //Find the correct email
+        $selectEmail = Mail::findFirst("id_mail = $mailTarget");
+        $this->response->setJsonContent($selectEmail);
+        $this->response->setStatusCode(200, "OK");
+        $this->response->send();
+      }else {
+        $this->response->setStatusCode(404, "Not Found");
+      }
+    }
+  }
 //------------------------------------------------------------------------Edge--
 }
-

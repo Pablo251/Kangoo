@@ -97,35 +97,65 @@ var KANGOO = KANGOO || {
   * Draw a new sent rows...
   * @param POST responce
   */
-  appendSentRows: function(post){
+  appendSentRows: function(post, herFlag, backFlag){
     var objPost = jQuery.parseJSON(post);
     $("#tableBody tr").remove();
+    //Validate the 5 records to return back
+    if (objPost.mails.length==5 || herFlag==false) {
+    console.log("es ta es ka cantidad de loops a pintat "+objPost.mails.length);
     for (var i = 0; i < objPost.mails.length; i++) {
-      $('#tableBody').append( '<tr value="objPost.mails[i].id_user"">'+
-      '<td>' + objPost.mails[i].username + '</td>'+
-      '<td>' + objPost.mails[i].email + '</td>'+
-      '<td>' + objPost.mails[i].id_user + '</td>'+
-      '<td><input onclick="KANGOO.deleteMail(this.value);"name="deletebutton" value="'+objPost.mails[i].id_user+
+      $('#tableBody').append( '<tr value="objPost.mails[i].id_mail"">'+
+      '<td><input onclick="KANGOO.showMailInfo(this.value);"name="viewbutton" value="'+objPost.mails[i].id_mail+
+      '" type="image" src="/kangoo/public/img/mail.png" alt="button"></td>'+
+      '<td>' + objPost.mails[i].subject + '</td>'+
+      '<td>' + objPost.mails[i].date + '</td>'+
+      '<td><input onclick="KANGOO.deleteMail(this.value);"name="deletebutton" value="'+objPost.mails[i].id_mail+
       '" type="image" src="/kangoo/public/img/delete.png" alt="button"></td>'+
       '</tr>' );
-    };
+    }
+    }
     localStorage.setItem("finalLoop", objPost.finalLoop);
     localStorage.setItem("initialLoop", objPost.initialLoop);
     localStorage.setItem("diference", objPost.diference);
+    if (objPost.mails.length!=5 && backFlag==true) {
+    var sum = parseInt(localStorage.initialLoop)+parseInt(localStorage.diference);
+    console.log(sum);
+    if (sum>parseInt(localStorage.localStack)) {
+      return;
+    }
+    console.log(parseInt(localStorage.initialLoop)+parseInt(localStorage.diference));
+    KANGOO.callStackBack(sum);
+    }
   },
   /**
-  * Call the next 10 mail
+  * Call the next 10 mail next
   */
   callStack: function(indexTo){
     $.ajax({
-    data:  {"sentstack" : indexTo, "findby": "Pablo"  },
+    data:  {"sentstack" : indexTo, "findby": "sent"  },
     url:   '/kangoo/dashboard/outputCharger',
     type:  'post',
     beforeSend: function () {
       console.log("Processing post mails count and get new stack");
     },
     success:  function (response) {
-      KANGOO.appendSentRows(response);
+      KANGOO.appendSentRows(response, false, false);
+    }
+  });
+  },
+    /**
+  * Call the next 10 mail back
+  */
+  callStackBack: function(indexTo){
+    $.ajax({
+    data:  {"sentstack" : indexTo, "findby": "sent"  },
+    url:   '/kangoo/dashboard/outputCharger',
+    type:  'post',
+    beforeSend: function () {
+      console.log("Processing post mails count and get new stack");
+    },
+    success:  function (response) {
+      KANGOO.appendSentRows(response, true, true);
     }
   });
   },
@@ -138,6 +168,7 @@ var KANGOO = KANGOO || {
     url: "/kangoo/dashboard/getMailStack"
   }).done(function(data)
   {
+    console.log(data+" cantidaad");
     /*Set the data into the localStorage*/
     localStorage.setItem("localStack",data);
   });
@@ -150,7 +181,8 @@ var KANGOO = KANGOO || {
       console.log("Processing post mails count and get new stack");
     },
     success:  function (response) {
-      KANGOO.appendSentRows(response);
+      console.log(response);
+      KANGOO.appendSentRows(response, false, false);
     }
   });
   },
@@ -169,11 +201,38 @@ var KANGOO = KANGOO || {
     },
     success:  function (response) {
       console.log(response);
-      // if (response=="succes") {
+      location.reload();
+      // if (response=="\"success\"") {
       //  KANGOO.callStack(localStorage.initialLoop);
       // }else{
       //   alert("Upps! That mail can not deleted... :( ");
       // }
+    }
+  });
+  },
+
+  /**
+  * Show a mail content
+  */
+  showMailInfo: function(idMail){
+    $('#modal1').openModal()
+    //Dedelete the current tags
+    $("#modelCard h4").remove();
+    $("#modelCard p").remove();
+    $("#modelCard label").remove();
+    $.ajax({
+    data:  {"id_mail" : parseInt(idMail)},
+    url:   '/kangoo/dashboard/getEmail',
+    type:  'post',
+    beforeSend: function () {
+      console.log("Show mail...");
+    },
+    success:  function (response) {
+      var mymailjson = jQuery.parseJSON(response);
+      $('#modelCard').append("<h4>"+mymailjson.subject+"</h4><label>Date and hour: "+
+        mymailjson.date+"</label>");
+      $('#modelCard').append("<p>"+mymailjson.content+"</p>");
+      console.log(mymailjson.state);
     }
   });
   },
