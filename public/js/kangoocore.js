@@ -252,11 +252,14 @@ console.log("Se levantó el view");
   * Show a selected mail content to edit
   */
   editMailInfo: function(idMail){
+    KANGOO.switchState("editing", idMail);
     console.log("Se levantó el edit");
      $('#modal2').openModal({
-      complete: function(){ console.log("Cierre!");}
+      complete: function(){
+       console.log("Cierre!");
+       KANGOO.switchState("output", idMail);
+     }
     });
-
     $("#modelCardEdit input").remove();
     $("#modelCardEdit textarea").remove();
     $("#modelCardEdit label").remove();
@@ -269,9 +272,12 @@ console.log("Se levantó el view");
     },
     success:  function (response) {
       var mymailjson = jQuery.parseJSON(response);
-      $('#modelCardEdit').append("<label>Subject: </label><input type='text' id='mailSubject' value='"+mymailjson.subject+"'>"+
+      console.log("hhhheyyy!! "+mymailjson.id_mail);
+      $('#modelCardEdit').append("<label id='mailId' name='"+mymailjson.id_mail
+      +"'>Subject: </label><input type='text' id='mailSubject' value='"+mymailjson.subject+"'>"+
         "<label>"+mymailjson.date+"</label>");
-      $('#modelCardEdit').append("<textarea>"+mymailjson.content+"</textarea>");
+      KANGOO.getAdreesee(mymailjson.id_mail);
+      $('#modelCardEdit').append("<textarea id='contentId' class='materialize-textarea'>"+mymailjson.content+"</textarea>");
       console.log(mymailjson.state);
     }
   });
@@ -282,31 +288,89 @@ console.log("Se levantó el view");
   * This set temporal state in the email table. The reason is: The Cronejob
   * couldn't access to that state and sent that mail.
   */
-  switchState: function(currentState){
-    if (currentState==true) {
-
+  switchState: function(currentState, idMail){
+    $.ajax({
+    data:  {"action" : currentState,
+            "id_mail" : idMail
+          },
+    url:   '/kangoo/dashboard/setState',
+    type:  'post',
+    beforeSend: function () {
+      console.log("Show mail...");
+    },
+    success:  function (response) {
+      var mymailjson = jQuery.parseJSON(response);
+      console.log("Switch to "+mymailjson);
     }
-  //   $.ajax({
-  //   data:  {"id_mail" : parseInt(idMail)},
-  //   url:   '/kangoo/dashboard/getEmail',
-  //   type:  'post',
-  //   beforeSend: function () {
-  //     console.log("Show mail...");
-  //   },
-  //   success:  function (response) {
-  //     var mymailjson = jQuery.parseJSON(response);
-  //     $('#modelCardEdit').append("<label>Subject: </label><input type='text' id='mailSubject' value='"+mymailjson.subject+"'>"+
-  //       "<label>"+mymailjson.date+"</label>");
-  //     $('#modelCardEdit').append("<textarea>"+mymailjson.content+"</textarea>");
-  //     console.log(mymailjson.state);
-  //   }
-  // });
+  });
   },
 
   /**
-  *
+  * Get the adressee respect to an especific mail id
   */
-  sayHello: function (){
-    alert("Hello");
+  getAdreesee: function (idMail){
+    console.log("sap!! "+idMail);
+    $.ajax({
+    data:  {"id_mail" : parseInt(idMail)},
+    url:   '/kangoo/dashboard/getAd',
+    type:  'post',
+    beforeSend: function () {
+      console.log("Show mail...");
+    },
+    success:  function (response) {
+      var myobjadressee = jQuery.parseJSON(response);
+      var adresseeList = "";
+      var id_adresseeList = "";
+      for (var i = 0; i < myobjadressee.length; i++) {
+        adresseeList += myobjadressee[i].adresse + ",";
+        id_adresseeList += myobjadressee[i].id_adresse + ",";
+        console.log(myobjadressee[i]);
+      };
+      id_adresseeList = id_adresseeList.substring(0, id_adresseeList.length - 1);
+      adresseeList = adresseeList.substring(0, adresseeList.length - 1);
+      console.log(adresseeList + " "+id_adresseeList);
+      $('#modelCardEdit').append("<label id='adressId' name='"+id_adresseeList+
+      "'>Adressee: </label><input type='text' id='adressText' value='"+adresseeList+"'>");
+    }
+  });
+  },
+  /**
+  * Save the changes afther edit mail...
+  */
+  saveChanges: function(){
+    var taken = "";
+    //Get id of mail
+    taken += "IdMaul ="+$("#mailId").attr('name') + ". ";
+    //Get subject
+    taken += "Subject ="+$("#mailSubject").val() + ", ";
+    //Get the mail content
+    taken += "Content ="+$("#contentId").val() + ", ";
+    //Get the adress id
+    taken += "AdressId ="+$("#adressId").attr('name') + "... ";
+    //Get the adessee
+    taken += "adres ="+$("#adressText").val() + "... ";
+    console.log(taken);
+    $.ajax({
+    data:  {"id_mail" : parseInt($("#mailId").attr('name')),
+            "subject" : $("#mailSubject").val(),
+            "content" : $("#contentId").val(),
+            "id_adresse" : $("#adressId").attr('name'),
+            "adress" : $("#adressText").val()
+          },
+    url:   '/kangoo/dashboard/saveChangesMailAdress',
+    type:  'post',
+    beforeSend: function () {
+      console.log("Show mail...");
+    },
+    success:  function (response) {
+      var myobjadressee = jQuery.parseJSON(response);
+      if (myobjadressee=="done") {
+        alert("Done! Change successfuly");
+      }else{
+        alert(":(... Upps... Change Fail");
+      }
+      console.log(myobjadressee);
+    }
+  });
   },
 };

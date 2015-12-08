@@ -1,5 +1,6 @@
 <?php
 use Phalcon\Mvc\Controller;
+use Phalcon\Validation\Validator\Email;
 /**
  *  User Controller
  */
@@ -165,6 +166,103 @@ $this->view->form = $form;
         //Find the correct email
         $selectEmail = Mail::findFirst("id_mail = $mailTarget");
         $this->response->setJsonContent($selectEmail);
+        $this->response->setStatusCode(200, "OK");
+        $this->response->send();
+      }else {
+        $this->response->setStatusCode(404, "Not Found");
+      }
+    }
+  }
+  /**
+  * This get an array to adresses for a respective
+  * @return JSON array: addresses
+  */
+  public function getAdAction(){
+    //Disable the view
+    $this->view->disable();
+    if ($this->request->isPost()) {
+      if ($this->request->isAjax()) {
+        $JSON = array();
+        $mytemp = array();
+        $mailTarget = $this->request->getPost('id_mail');
+        //Find the correct email
+        $adress = Adressee::find("id_mail = $mailTarget");
+        $counter = -1;
+        for ($j=1; $j <= count($adress); $j++) {
+          $mytemp = $adress[++$counter];
+          array_push($JSON, $mytemp);
+        }
+        $this->response->setJsonContent($JSON);
+        $this->response->setStatusCode(200, "OK");
+        $this->response->send();
+      }else {
+        $this->response->setStatusCode(404, "Not Found");
+      }
+    }
+  }
+  /**
+  * This save the changes in adressee and mail
+  */
+  public function saveChangesMailAdressAction(){
+    //Disable the view
+    $this->view->disable();
+    if ($this->request->isPost()) {
+      if ($this->request->isAjax()) {
+        //Mail
+        $mailId = $this->request->getPost('id_mail');
+        $mailSubject = $this->request->getPost('subject');
+        $mailContent = $this->request->getPost('content');
+        //Adressee
+        $adressId = $this->request->getPost('id_adresse');
+        $adress = $this->request->getPost('adress');
+        //Update Email
+        $selectEmail = Mail::findFirst("id_mail = $mailId");
+        //assign new values
+        $selectEmail->subject = $mailSubject;
+        $selectEmail->content = $mailContent;
+        if ($selectEmail->save()) {
+          //Convert to array
+          $adressId = explode(',', $adressId);
+          $adress = explode(',', $adress);
+          //Update the adressee
+          for ($i=0; $i < count($adressId) ; $i++) {
+            $selectAdressee = Adressee::findFirst("id_adresse = $adressId[$i]");
+            //assign
+            $selectAdressee->adresse = $adress[$i];
+            $selectAdressee->save();
+          }
+          $this->response->setJsonContent('done');
+        }else{
+          $this->response->setJsonContent('fail');
+        }
+        $this->response->setStatusCode(200, "OK");
+        $this->response->send();
+      }else {
+        $this->response->setStatusCode(404, "Not Found");
+      }
+    }
+  }
+
+  /**
+  * Set a mail state
+  */
+  public function setStateAction(){
+    //Disable the view
+    $this->view->disable();
+    if ($this->request->isPost()) {
+      if ($this->request->isAjax()) {
+        //Mail
+        $mailId = $this->request->getPost('id_mail');
+        $mailSate = $this->request->getPost('action');
+        //Update Email
+        $selectEmail = Mail::findFirst("id_mail = $mailId");
+        //assign new values
+        $selectEmail->state = $mailSate;
+        if ($selectEmail->save()) {
+          $this->response->setJsonContent($mailSate);
+        }else{
+          $this->response->setJsonContent('fail');
+        }
         $this->response->setStatusCode(200, "OK");
         $this->response->send();
       }else {

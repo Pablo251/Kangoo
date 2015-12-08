@@ -158,6 +158,14 @@ $2a$08$RPMOUzM8kZGSCNMPlflsNOz/l6gL4XWgr6PM0TA/kZ/qeX64svDNy
 			 decrement in one numer cantidadTotal...
 			-continue the foreach
 
+
+Go to render the output mails...
+kangoo:
+
+New task:
+1. Update the adressee
+2. Validar el formato del correo a la hora de editarlo JS
+
 		
 
 					    

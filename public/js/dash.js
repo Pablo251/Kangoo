@@ -34,5 +34,8 @@ $(document).ready(function(){
     console.log(parseInt(localStorage.initialLoop)+parseInt(localStorage.diference));
     KANGOO.callStackBack(sum);
   });
+  $("#pressModal2").click(function(){
+    KANGOO.saveChanges();
+  });
   /*----------------------------------------------------------------------edge*/
 });
