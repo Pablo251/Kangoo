@@ -75,4 +75,8 @@ class Mail extends Component
 			return $mailer->send($message);
 	}
 
+	public function getRandomStuff(){
+		echo "Booo";
+	}
+
 }
