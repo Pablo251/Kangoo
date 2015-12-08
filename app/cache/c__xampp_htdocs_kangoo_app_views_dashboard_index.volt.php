@@ -1,6 +1,6 @@
 <div>
 <ul id="dropdown1" class="dropdown-content">
-<li ><a href="http://localhost:81/kangoo/index/enviados" style="float:right;">Cerrar Sesion</a></li>
+<li ><a id="closeSession"href="session/logout" style="float:right;">Logout</a></li>
 </ul>
 <nav>
 <div class="nav-wrapper blue lighten-1">
@@ -16,7 +16,7 @@
 <ul>
 <li><a id="exsent"class="btn-floating blue lighten-1"><i class="material-icons"><h6>SEND</h6></i></a></li>
 <li><a id="exoutput"class="btn-floating blue lighten-2"><i class="material-icons"><h6>OUTPUT</h6></i></a></li>
-<li><a id="excreate"class="btn-floating blue lighten-3"><i class="material-icons"><h6>CREATE</h6></i></a></li>
+<li><a href="/kangoo/dashboard/new"id="excreate"class="btn-floating blue lighten-3"><i class="material-icons"><h6>CREATE</h6></i></a></li>
 </ul>
 </div>
 </div>
@@ -68,8 +68,7 @@
 <div>
 </div>
 </div>
-<!-- Modal Trigger -->
-<a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a>
+
 
 <!-- Modal Structure -->
 <div id="modal1" class="modal modal-fixed-footer">
@@ -82,8 +81,7 @@
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
   </div>
 </div>
-<!-- Modal Trigger2 -->
-<a class="modal-trigger waves-effect waves-light btn" href="#modal2">Modal</a>
+
 
 <!-- Modal Structure 2 -->
 <div id="modal2" class="modal modal-fixed-footer">
@@ -94,7 +92,7 @@
   </div>
   <div class="modal-footer">
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
-    <a href="#!" id="pressModal2" class="modal-action modal-close waves-effect waves-green btn-flat ">Save Changes</a>
+    <a href="" id="pressModal2" class="modal-action modal-close waves-effect waves-green btn-flat ">Save Changes</a>
   </div>
 </div>
 <div>
@@ -102,9 +100,6 @@
 <li class="waves-effect"><a href="#!"><i class="material-icons"></i></a></li>
 <li class="waves-effect"><button type="button" name="button" id="back">Back</button></li>
 <li class="waves-effect"><button type="button" name="button" id="next">Next</button></li>
-<li class="waves-effect"><a href="#!">3</a></li>
-<li class="waves-effect"><a href="#!">4</a></li>
-<li class="waves-effect"><a href="#!">5</a></li>
 <li class="waves-effect"><a href="#!"><i class="material-icons"></i></a></li>
 </ul>
 </div>

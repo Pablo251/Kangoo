@@ -52,4 +52,8 @@ class Auth extends Component
     }
     return false;
   }
+
+  public function remove(){
+    $this->session->remove('authenticated');
+  }
 }

@@ -129,6 +129,15 @@ class SessionController extends ControllerBase
       'action' => 'index'
     ));
   }
-  
+
+  /**
+   * Closes the session
+   */
+  public function logoutAction()
+  {
+      $this->auth->remove();
+      return $this->response->redirect('index');
+  }
+
   // ---------------------------------------------------------------------Edge--
 }

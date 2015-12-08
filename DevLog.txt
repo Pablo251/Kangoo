@@ -165,7 +165,9 @@ kangoo:
 New task:
 1. Update the adressee
 2. Validar el formato del correo a la hora de editarlo JS
-
+3. eliminar la session
+4. !!!!!Falta hacerle un click event a la mica de logout y volarce el localStorage LISTO!!
+5. Redirect en lugar de un dispactcher a la hora de enviar un mail
 		
 
 					    

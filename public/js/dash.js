@@ -34,8 +34,14 @@ $(document).ready(function(){
     console.log(parseInt(localStorage.initialLoop)+parseInt(localStorage.diference));
     KANGOO.callStackBack(sum);
   });
+  /*Click event for the modal..*/
   $("#pressModal2").click(function(){
     KANGOO.saveChanges();
+  });
+  /*Click event for the logout*/
+  $("#closeSession").click(function(){
+    KANGOO.logout();
+    alert("So long! :)");
   });
   /*----------------------------------------------------------------------edge*/
 });

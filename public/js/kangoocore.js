@@ -56,6 +56,23 @@ var KANGOO = KANGOO || {
   },
 
   /**
+  * Validate a correct email adress
+  */
+  mailValidator: function(field){
+    var adressArray = field.split(',');
+    var reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (adressArray.length<=0) {
+      return false;
+    }
+    for (var i = 0; i < adressArray.length; i++) {
+      if (!reg.test(adressArray[i])) {
+        return false;
+      }
+    };
+    return true;
+  },
+
+  /**
   * Execute an Ajax Post to set the output mail
   *
   * calls : Not Yet
@@ -338,39 +355,44 @@ console.log("Se levantó el view");
   * Save the changes afther edit mail...
   */
   saveChanges: function(){
-    var taken = "";
-    //Get id of mail
-    taken += "IdMaul ="+$("#mailId").attr('name') + ". ";
-    //Get subject
-    taken += "Subject ="+$("#mailSubject").val() + ", ";
-    //Get the mail content
-    taken += "Content ="+$("#contentId").val() + ", ";
-    //Get the adress id
-    taken += "AdressId ="+$("#adressId").attr('name') + "... ";
-    //Get the adessee
-    taken += "adres ="+$("#adressText").val() + "... ";
-    console.log(taken);
-    $.ajax({
-    data:  {"id_mail" : parseInt($("#mailId").attr('name')),
+    var adressValue = $("#adressText").val();
+    try {
+      if (!KANGOO.mailValidator(adressValue)) {
+        alert("Invalid information on the adress");
+      }else{
+        $.ajax({
+          data:  {"id_mail" : parseInt($("#mailId").attr('name')),
             "subject" : $("#mailSubject").val(),
             "content" : $("#contentId").val(),
             "id_adresse" : $("#adressId").attr('name'),
-            "adress" : $("#adressText").val()
+            "adress" : adressValue
           },
-    url:   '/kangoo/dashboard/saveChangesMailAdress',
-    type:  'post',
-    beforeSend: function () {
-      console.log("Show mail...");
-    },
-    success:  function (response) {
-      var myobjadressee = jQuery.parseJSON(response);
-      if (myobjadressee=="done") {
-        alert("Done! Change successfuly");
-      }else{
-        alert(":(... Upps... Change Fail");
-      }
-      console.log(myobjadressee);
+          url:   '/kangoo/dashboard/saveChangesMailAdress',
+          type:  'post',
+          beforeSend: function () {
+          console.log("Show mail...");
+          },
+          success:  function (response) {
+          var myobjadressee = jQuery.parseJSON(response);
+          if (myobjadressee=="done") {
+          alert("Done! Change successfuly");
+          }else{
+          alert(":(... Upps... Change Fail");
+          }
+          console.log(myobjadressee);
     }
   });
+      }
+    } catch (e) {
+      alert("Invalid adress format! use a comma to separate the adressee");
+    }
   },
+  /**
+  * Delete the local session
+  */
+  logout: function(){
+    console.log("So long");
+    localStorage.kangoo = "[{}]";
+  },
+  /*----------------------------------------------------------------------------*/
 };

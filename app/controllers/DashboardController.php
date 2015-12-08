@@ -17,6 +17,7 @@ class DashboardController extends ControllerBase
   */
   public function indexAction(){
     //echo "<h1>Hello " . $this->session->get('authenticated')['id'].".... App is under development :P</h1>" ;
+    echo "<h5>".$this->session->get('authenticated')['username']."</h5>" ;
   }
 // create a new mail
   public function newAction(){
@@ -26,7 +27,7 @@ class DashboardController extends ControllerBase
         $mail = new Mail();
         $mail->assign(array(
           'fk_user' => $this->session->get('authenticated')['id'],
-          'state' => 'pending',
+          'state' => 'output',
           'subject' => $this->request->getPost('subject'),
           'content' => $this->request->getPost('content'),
           'date' => date('d-m-Y'),
@@ -49,9 +50,7 @@ class DashboardController extends ControllerBase
           }else {echo"<script>alert('La dirección de correo:  ($adresses[$i]) es incorrecta por lo cual no se agregara a los destinatarios del email que desea enviar, solo los correctos.')</script>";
         }
       }
-      return $this->dispatcher->forward(array(
-        'controller' => 'dashboard',
-        'action' => 'index'));
+      return $this->response->redirect('dashboard');
 
     }else{
       echo "<h5>Upps! Data couldn't be saved :(... Try again...</h5>";
