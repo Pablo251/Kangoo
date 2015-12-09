@@ -11,7 +11,7 @@
 </div>
 </nav>
 <div class="fixed-action-btn horizontal" style="bottom: 22%; right: 2%;font-size: 82%;">
-<a class="btn-floating btn-large blue lighten-3">OPTIONS</a>
+<a class= "btn-floating btn-large blue lighten-3">OPTIONS</a>
 </a>
 <ul>
 <li><a class="btn-floating blue lighten-1"><i class="material-icons"><h6>SEND</h6></i></a></li>
