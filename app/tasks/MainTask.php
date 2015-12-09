@@ -1,23 +1,70 @@
 <?php
-use Phalcon\Mvc\Controller;
-class MainTask extends \Phalcon\CLI\Task
-{
-    public function mainAction()
-    {
-        echo "\nThis is the default task and the default action \n";
-        //$this->mail->getRandomStuff();
-        //var_dump($this->config->database);
-        //echo $this->auth->getRandomStuff();
-        $User = User::find();
-        echo count($User);
+
+class mainTask extends \Phalcon\CLI\Task {
+
+    public function mainAction() {
+        echo "\nSent mails \n";
+        $mymail = Mail::find("state = 'output' AND active = 1");
+        foreach ($mymail as $value) {
+          $adressee = Adressee::find("id_mail = ".$value->id_mail." AND active = 1");
+          foreach ($adressee as $valueAdress) {
+            $changeInAdress = Adressee::findFirst("id_adresse = ".$valueAdress->id_adresse." AND active = 1");
+            $this->libaccess->sendNew($changeInAdress->adresse,$value->subject,$value->content);
+            $changeInAdress->active = 0;
+            $changeInAdress->save();
+          }
+          $value->state = "sent";
+          $value->save();
+        }
+        // var_dump($this);
     }
 
     /**
      * @param array $params
      */
-    public function testAction(array $params)
-    {
-        echo sprintf('hello %s', $params[0]) . PHP_EOL;
-        echo sprintf('best regards, %s', $params[1]) . PHP_EOL;
+    public function testAction() {
+        $users = Users::find();
+        if($users)
+        {
+            foreach($users as $user)
+            {
+                echo $user->name . '-' . $user->email . PHP_EOL;
+            }
+        }
     }
+
+    // public function consumerAction() {
+    //     // Get Beanstalk Service
+    //     $queue = $this->getDI('beanstalk');
+    //
+    //     while (($job = $queue->peekReady()) !== false) {
+    //
+    //         $job = $queue->reserve();
+    //
+    //         $message = $job->getBody();
+    //
+    //         var_dump($message);
+    //
+    //         $job->delete();
+    //     }
+    // }
+    //
+    // public function producerAction() {
+    //     // Get Beanstalk Service
+    //     $queue = $this->getDI('beanstalk');
+    //
+    //     //Insert the job in the queue with options
+    //     $jobId = $queue->put(
+    //             array('processVideo' => 4871)
+    //     );
+    //     echo $jobId . PHP_EOL;
+    // }
+    //
+    // public function checkAction() {
+    //     // Get Beanstalk Service
+    //     $queue = $this->getDI('beanstalk');
+    //
+    //     //echo 'hello' . PHP_EOL;
+    // }
+
 }

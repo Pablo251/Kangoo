@@ -78,7 +78,7 @@
     <p></p>
     <label></label>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer cyan lighten-1">
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
   </div>
 </div>
@@ -92,7 +92,7 @@
     <p></p>
     <label></label>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer cyan lighten-1">
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
     <a href="" id="pressModal2" class="modal-action modal-close waves-effect waves-green btn-flat ">Save Changes</a>
   </div>

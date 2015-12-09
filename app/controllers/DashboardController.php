@@ -17,7 +17,7 @@ class DashboardController extends ControllerBase
   */
   public function indexAction(){
     //echo "<h1>Hello " . $this->session->get('authenticated')['id'].".... App is under development :P</h1>" ;
-    echo "<h5>".$this->session->get('authenticated')['username']."</h5>" ;
+    echo "<h5 style=color:#008B8B;>".$this->session->get('authenticated')['username']."</h5>" ;
   }
 // create a new mail
   public function newAction(){
@@ -30,7 +30,7 @@ class DashboardController extends ControllerBase
           'state' => 'output',
           'subject' => $this->request->getPost('subject'),
           'content' => $this->request->getPost('content'),
-          'date' => date('d-m-Y'),
+          'date' => date('Y-m-d H:i:s'),
           'active' => 1
           ));
         if ($mail->save()) {
