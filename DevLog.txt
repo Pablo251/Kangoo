@@ -106,3 +106,70 @@ $2a$08$RPMOUzM8kZGSCNMPlflsNOz/l6gL4XWgr6PM0TA/kZ/qeX64svDNy
 	16/11
 	-Login changes[username convert to lower case before run the select]
 	- Working in the model USER... Adding "uniques" options as mail and username
+	- Remerme with js and Ajax
+		
+		login-view
+			JS token added
+		DB+
+			User table: New fiel "token" added
+		UserModel+
+			Add new entitie "token"
+		SessionController+
+			signupAction: setup false in the new fiel token 
+			when an user create their account
+			loginAction: if the post.remember is not false,
+			update the user user token with the new token
+		login-view
+			create a key kangoo with the user info included
+			the token into the local storage
+			Ready!
+		Ajax Post!
+			Now the app can make post with ajax
+			php
+			     acl
+				logged user can't acces to the login/sigup
+			     BeforeExecuteRoute...
+				if the user is incide can't access to the 
+				login and signup
+			     index controller::ajaxPost
+				Validate is the session is allready
+					if not, create a session
+					    Find the username and token, then
+					    if found... Log into the app
+					    the selected user.
+			     ajax post is working perfect!
+				IndexController::logPostAction-Ajax 
+				Post Can't filtered.
+				User can't accest to that action
+
+	Dashboard
+		set a sent mail stack.. the first 10 sent mails.
+			-Select all the mails... Mail::find();  put into a variable*
+			-Count all the mails to get the lastests registres... count()					
+			-throught a foreach  in "wrong way", "Backward", whatever!
+			- if... (variable[cantidadTotal -1]) pregunta si ese es un 
+			enviado
+				-YES 
+					mytemp is equal to that mail
+					make a array_push(JSON, mytemp)
+			Exit
+			- if... (Count(JSON)==10)
+				exit
+			 decrement in one numer cantidadTotal...
+			-continue the foreach
+
+
+Go to render the output mails...
+kangoo:
+
+New task:
+1. Update the adressee
+2. Validar el formato del correo a la hora de editarlo JS
+3. eliminar la session
+4. !!!!!Falta hacerle un click event a la mica de logout y volarce el localStorage LISTO!!
+5. Redirect en lugar de un dispactcher a la hora de enviar un mail
+		
+
+					    
+
+	

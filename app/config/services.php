@@ -95,7 +95,7 @@ $di->setShared('session', function () {
  * Start the sendmail
  */
 $di->set('mail', function(){
-        return new Mail();
+        return new Mails();
 });
 
 /**

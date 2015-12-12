@@ -36,6 +36,12 @@ class User extends \Phalcon\Mvc\Model
      * @var integer
      */
     public $active;
+
+    /**
+     *
+     * @var string
+     */
+    public $token;    
     /**
      * Before create the user assign a password
      */

@@ -9,7 +9,11 @@
     {{ form.label('password')}}</br>
     {{ form.render('password')}}</br>
     {{ form.messages('password')}}</br></br>
+    {{ form.render('remember') }}
+    {{ form.label('remember') }}</br></br>
     {{ form.render('Continue')}}
+    {{ link_to()}}
   </form>
 </div>
 </section>
+{{ javascript_include('js/log.js')}}

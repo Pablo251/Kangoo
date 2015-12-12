@@ -78,7 +78,7 @@ class EmailConfirmations extends \Phalcon\Mvc\Model
                 'confirmUrl' => '/confirm/' . $this->code . '/' . $this->user->email
             )
         );
-    }    
+    }
 
     /**
      * Initialize method for model.
