@@ -88,7 +88,7 @@ $this->view->form = $form;
       //It's the final mails... Turururuuu... turututu..
       for ($i=$stackCount; $i >= 0; $i--) {
         //Was sent and are active
-        if ($allmails[$loopCounter]->state==$findBy&&$allmails[$loopCounter]->active==1) {
+        if ($allmails[$loopCounter]->state==$findBy&&$allmails[$loopCounter]->active==1&&$allmails[$loopCounter]->fk_user==$this->session->get('authenticated')['id']) {
           $mytemp = $allmails[$loopCounter];
           array_push($JSON, $mytemp);
           //Ask if exist 10 mails in the stack
