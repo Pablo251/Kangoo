@@ -1,2 +1,2 @@
 # Kangoo
-Kangoo is a "mailing send" manager. It's a UTN students project.
+Kangoo is a "send mails" manager. It's an UTN students project.
